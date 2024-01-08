@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 
 import Model.CCase;
+import Model.CGame;
 import Model.CPlateau;
 
 public class FenetrePrincipale extends JFrame {
@@ -18,6 +19,8 @@ public class FenetrePrincipale extends JFrame {
     private CCase myCase1;
     private CCase myCase2;
     private CPlateau myBoard;
+    private CGame myGame;
+    private JButton button;
 
     public FenetrePrincipale() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,17 +39,42 @@ public class FenetrePrincipale extends JFrame {
         menuBar.add(mFichier);
         miQuitter = new JMenuItem("Quitter");
         mFichier.add(miQuitter) ;
+
+        myGame.drawPieces(myPanel);
+        pack();
+        setLocationRelativeTo(null);
+
+        button = new JButton("\u2654");
+        button.setFont(getResizedFont(button.getFont(), 50));
+        button.setBounds(10,10,500,500);
+        button.setOpaque(false);
+        button.setContentAreaFilled(false);
+        button.setBorderPainted(false);
+        myPanel.add(button);
+        //this.setContentPane(myPanel);
+
+        button.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+    }
+
+    private Font getResizedFont(Font font, int newSize) {
+        return font.deriveFont((float) newSize);
     }
 
     public void draw(Graphics g) {
         Graphics bufferGraphics;
         Image offscreen;
 
-
         /*myCase1 = new CCase(new Rectangle(50,50,50,50), Color.GREEN,'A',1,true);
         myCase2 = new CCase(new Rectangle(100,50,50,50), Color.PINK,'B',1,true);*/
-        myBoard = new CPlateau();
+        //myBoard = new CPlateau();
+        myGame = new CGame();
 
+
+        setLocationRelativeTo(null);
         // On crée une image en mémoire de la taille du ContentPane
         offscreen = createImage(this.getContentPane().getWidth(),this.getContentPane().getHeight());
         // On récupère l'objet de type Graphics permettant de dessiner dans cette image
@@ -54,7 +82,7 @@ public class FenetrePrincipale extends JFrame {
         // On colore le fond de l'image en blanc
         bufferGraphics.setColor(Color.WHITE);
         // On dessine le plateau
-        myBoard.draw(bufferGraphics);
+        myGame.draw(bufferGraphics);
 
         g.drawImage(offscreen,0,0,null);
     }
