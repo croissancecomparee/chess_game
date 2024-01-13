@@ -4,26 +4,26 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 public class CCase{
-    private char letter;
-    private int number;
+    private char abscissa;
+    private int ordinate;
     private Rectangle rectangle;
     private Color color;
     private boolean free;
-    public CCase(){
-        rectangle = new Rectangle(0,0,50,50);
+    public CCase(Rectangle rectangle, Color color, String s, int i, boolean free){
+        this.rectangle = new Rectangle(0,0,50,50);
     }
     public CCase(Rectangle rectangle, Color color, char letter, int number, boolean free) {
         this.rectangle = rectangle;
-        this.letter = letter;
-        this.number = number;
+        this.abscissa = letter;
+        this.ordinate = number;
         this.color = color;
         this.free = free;
     }
     public char getLetter() {
-        return letter;
+        return abscissa;
     }
     public int getNumber() {
-        return number;
+        return ordinate;
     }
     public Color getColor() {
         return color;
