@@ -40,24 +40,26 @@ public class FenetrePrincipale extends JFrame {
         miQuitter = new JMenuItem("Quitter");
         mFichier.add(miQuitter) ;
 
+        myGame = new CGame();
         myGame.drawPieces(myPanel);
         pack();
         setLocationRelativeTo(null);
 
-        button = new JButton("\u2654");
-        button.setFont(getResizedFont(button.getFont(), 50));
-        button.setBounds(10,10,500,500);
-        button.setOpaque(false);
-        button.setContentAreaFilled(false);
-        button.setBorderPainted(false);
-        myPanel.add(button);
+//        button = new JButton("\u2654");
+//        button.setFont(getResizedFont(button.getFont(), 50));
+//        button.setBounds(10,10,500,500);
+//        button.setOpaque(false);
+//        button.setContentAreaFilled(false);
+//        button.setBorderPainted(false);
+//        myPanel.add(button);
+//        //this.setContentPane(myPanel);
+//
+//        button.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent e) {
+//
+//            }
+//        });
         //this.setContentPane(myPanel);
-
-        button.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
     }
 
     private Font getResizedFont(Font font, int newSize) {
@@ -71,7 +73,7 @@ public class FenetrePrincipale extends JFrame {
         /*myCase1 = new CCase(new Rectangle(50,50,50,50), Color.GREEN,'A',1,true);
         myCase2 = new CCase(new Rectangle(100,50,50,50), Color.PINK,'B',1,true);*/
         //myBoard = new CPlateau();
-        myGame = new CGame();
+
 
 
         setLocationRelativeTo(null);

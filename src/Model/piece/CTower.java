@@ -6,4 +6,6 @@ public class CTower extends CPiece{
     public CTower(String unicodeC, int colorC, char abscissaC, int ordinateC) {
         super(unicodeC,colorC,abscissaC,ordinateC);
     };
+
+
 }

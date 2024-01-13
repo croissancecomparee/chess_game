@@ -6,7 +6,7 @@ import java.awt.Point;
 public class CPlateau {
     // Attribut représentant la liste de cases
     private ArrayList<CCase> cases;
-    private int weightCase = 50;
+    private int weightCase = 80;
     private Point cointSuperieurGauche = new Point(0,0);
     private char[] letterCoordinate = new char[]{'A','B','C','D','E','F','G','H'};
     private Color[] color = new Color[]{Color.WHITE,new Color(152,129,242,100)};
@@ -47,7 +47,7 @@ public class CPlateau {
     }
 
     public int getordinateCoordinate(int i) {
-        return i*weightCase;
+        return (9-i)*weightCase;
     }
 
     public int getWeightCase() {
