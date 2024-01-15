@@ -10,6 +10,8 @@ public abstract class CPiece {
     private int ordinate;
     private boolean selected = false;
     private JButton button;
+    private int widthButton=89;
+    private int heightButton=60;
 
     public CPiece(String unicodeC, int colorC, char abscissaC, int ordinateC) {
         unicode = unicodeC;
@@ -47,5 +49,9 @@ public abstract class CPiece {
         * */
         abscissa = letter;
         ordinate = number;
+    }
+
+    public void movingButton(int x, int y) {
+        button.setBounds(x,y,widthButton,heightButton);
     }
 }

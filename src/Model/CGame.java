@@ -183,13 +183,17 @@ public class CGame {
             this.selectedPiece = clickedPiece;
             CCase startCase = plateau.getCaseWithCoordinate(clickedPiece.getLetter(),clickedPiece.getNumber());
             startCase.setColor(Color.CYAN);
+            isAPieceSelected = true;
             System.out.print("coucouuuu feafaefae");
         }
         else {
             System.out.print("coucouuuu");
             CCase lastCase = plateau.getCaseWithCoordinate(selectedPiece.getLetter(),selectedPiece.getNumber());
             lastCase.resetColor();
-            lastCase.setColor(Color.BLACK);
+//            lastCase.setColor(Color.BLACK);
+            this.selectedPiece = clickedPiece;
+            CCase startCase = plateau.getCaseWithCoordinate(clickedPiece.getLetter(),clickedPiece.getNumber());
+            startCase.setColor(Color.CYAN);
         }
     }
 
@@ -211,10 +215,15 @@ public class CGame {
         CCase caseToGo = plateau.getCaseWithCoordinate(letter, number);
         if (caseToGo.getFree()) {
             pieceToMove.move(letter,number);
+            pieceToMove.movingButton(plateau.getAbscissaCoordinate(letter),plateau.getordinateCoordinate(number));
             caseToGo.setFree(false);
         }
         else {
             System.out.print("\nCan't move to an occupy case.");
         }
+    }
+
+    public void moveSelected(char letter, int number) {
+        movingPiece(selectedPiece, letter, number);
     }
 }

@@ -113,7 +113,11 @@ public class FenetrePrincipale extends JFrame {
         int sourisY = evt.getPoint().y;
         System.out.print("\nx:"+sourisX+"\ty:"+sourisY);
         CCase aCase = myGame.getCase(sourisX,sourisY);
-        System.out.print(aCase.getFree());
+        System.out.print("\n is case free ? "+aCase.getFree());
+        System.out.print("\n is a piece selected ? "+myGame.getSelected());
+        if (myGame.getSelected()) {
+            myGame.moveSelected(aCase.getLetter(),aCase.getNumber());
+        }
     }
 
     private class MyMouseListener extends MouseAdapter {
