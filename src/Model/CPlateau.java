@@ -38,9 +38,9 @@ public class CPlateau {
 
     public CCase getCase(int i,int j) {
         /* function that return Case with coordinate (i,j) avec i,j € [|1,8|]*/
-        System.out.print("\ni:"+i+"\tj:"+j);
+//        System.out.print("\ni:"+i+"\tj:"+j);
         int k = 8*(j-1)+i;
-        System.out.print("\ncoordinate case "+k+":"+this.cases.get(8*j+i).getLetter()+","+this.cases.get(8*j+i).getNumber());
+//        System.out.print("\ncoordinate case "+k+":"+this.cases.get(8*j+i).getLetter()+","+this.cases.get(8*j+i).getNumber());
         return this.cases.get(8*(j-1)+i);
     }
 
@@ -59,7 +59,7 @@ public class CPlateau {
         int i = x/80 ;
         int j = y/80;
 //        System.out.print("\ncoordonnees toto:("+i+","+j+")");
-        return getCase(i,9-j);
+        return getCase(i,9-j +1);
     }
 
     public int getAbscissaCoordinate(char letter) {

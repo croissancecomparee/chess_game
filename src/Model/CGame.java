@@ -213,10 +213,21 @@ public class CGame {
         /* function that move the piece to coordinate */
         // getting the case
         CCase caseToGo = plateau.getCaseWithCoordinate(letter, number);
+        System.out.print("\ncoucouuggzgzu letter:"+caseToGo.getLetter()+"\tnumber:"+caseToGo.getNumber());
         if (caseToGo.getFree()) {
+            CCase oldCase = plateau.getCaseWithCoordinate(pieceToMove.getLetter(),pieceToMove.getNumber());
+            oldCase.setFree(true);
+            oldCase.resetColor();
+
             pieceToMove.move(letter,number);
+            System.out.print("\ncoucou walha letter: "+letter+"\nnumber: "+number);
+            System.out.print("\nheeyy abscisse: "+plateau.getAbscissaCoordinate(letter)+"\nordonnee: "+plateau.getordinateCoordinate(number));
             pieceToMove.movingButton(plateau.getAbscissaCoordinate(letter),plateau.getordinateCoordinate(number));
+
+
             caseToGo.setFree(false);
+            selectedPiece = null;
+            isAPieceSelected = false;
         }
         else {
             System.out.print("\nCan't move to an occupy case.");
