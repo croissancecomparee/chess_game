@@ -1,4 +1,6 @@
 package Model;
+import Model.piece.CPiece;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.awt.Point;
@@ -20,21 +22,22 @@ public class CPlateau {
         for (int i=1;i<10;i++) {
             for (int j=0;j<8;j++) {
                 CCase nouvelleCase =
-                        new CCase(
-                                new Rectangle(
-                                        (int) cointSuperieurGauche.getX()+j*weightCase,
-                                        (int) cointSuperieurGauche.getY()+(9-i)*weightCase,
-                                        weightCase,weightCase),
-                                this.color[(i+j+1)%2],
-                                letterCoordinate[j],
-                                i-1,
-                                true);
+                    new CCase(
+                        new Rectangle(
+                                (int) cointSuperieurGauche.getX()+j*weightCase,
+                                (int) cointSuperieurGauche.getY()+(9-i)*weightCase,
+                                weightCase,weightCase),
+                        this.color[(i+j+1)%2],
+                        letterCoordinate[j],
+                        i-1,
+                        true);
                 this.cases.add(nouvelleCase);
             }
         }
     }
 
     public CCase getCase(int i,int j) {
+        /* function that return Case with coordinate (i,j) avec i,j € [|1,8|]*/
         System.out.print("\ni:"+i+"\tj:"+j);
         int k = 8*(j-1)+i;
         System.out.print("\ncoordinate case "+k+":"+this.cases.get(8*j+i).getLetter()+","+this.cases.get(8*j+i).getNumber());
@@ -42,12 +45,21 @@ public class CPlateau {
     }
 
     public CCase getCaseWithCoordinate(char letter, int j) {
+        /* function that return Case with coordinate (a,j) avec a € [|A,H|] et j € [|1,8|]*/
         int i = 0;
         while (letter!=letterCoordinate[i]) {
             i++;
         }
-        System.out.print("\ncoordonnees:("+i+","+j+")");
+//        System.out.print("\ncoordonnees:("+i+","+j+")");
         return getCase(i,j);
+    }
+
+    public CCase getCaseCoordinatePanel(int x, int y) {
+        /* function that return Case with coordinate (x,y) avec x € [|0,640|] et y € [|0,720|] */
+        int i = x/80 ;
+        int j = y/80;
+//        System.out.print("\ncoordonnees toto:("+i+","+j+")");
+        return getCase(i,9-j);
     }
 
     public int getAbscissaCoordinate(char letter) {

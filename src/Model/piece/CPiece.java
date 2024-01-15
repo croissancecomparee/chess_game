@@ -1,4 +1,5 @@
 package Model.piece;
+import javax.swing.*;
 import java.awt.Graphics;
 
 public abstract class CPiece {
@@ -7,6 +8,8 @@ public abstract class CPiece {
     private int color_; // 0 for white, 1 for black
     private char abscissa;
     private int ordinate;
+    private boolean selected = false;
+    private JButton button;
 
     public CPiece(String unicodeC, int colorC, char abscissaC, int ordinateC) {
         unicode = unicodeC;
@@ -24,5 +27,25 @@ public abstract class CPiece {
     public int getNumber() {
         System.out.print("\nNumber:"+ordinate);
         return ordinate;
+    }
+    public boolean getSelected() {
+        return selected;
+    }
+    public void setSelected(boolean newState) {
+        selected = newState;
+    }
+    public JButton getButton () {
+        return button;
+    }
+    public void setButton (JButton newButton) {
+        button = newButton;
+    }
+
+    public void move(char letter, int number) {
+        /* function that move a piece to coordinate in entry
+        * the case is supposed to be free
+        * */
+        abscissa = letter;
+        ordinate = number;
     }
 }

@@ -2,8 +2,7 @@ package gui;
 
 import javax.swing.* ;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 
 import Model.CCase;
@@ -44,6 +43,47 @@ public class FenetrePrincipale extends JFrame {
         myGame.drawPieces(myPanel);
         pack();
         setLocationRelativeTo(null);
+
+//        button = new JButton("\u2659");
+//        button.setBounds(10, 10, 89, 60);
+//        button.setFont(new Font("Arial Unicode MS", Font.PLAIN, 50));
+//        button.setOpaque(false);
+//        button.setContentAreaFilled(false);
+//        button.setBorderPainted(false);
+
+
+//        MyMouseListener myMouseListener = new MyMouseListener();
+//        button.addMouseListener(new MouseListener() {
+//
+//        }
+        myPanel.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                formMouseClicked(e);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+
+//        myPanel.add(button);
     }
 
     private Font getResizedFont(Font font, int newSize) {
@@ -66,5 +106,40 @@ public class FenetrePrincipale extends JFrame {
         myGame.draw(bufferGraphics);
 
         g.drawImage(offscreen,0,0,null);
+    }
+
+    private void formMouseClicked(MouseEvent evt) {
+        int sourisX = evt.getPoint().x;
+        int sourisY = evt.getPoint().y;
+        System.out.print("\nx:"+sourisX+"\ty:"+sourisY);
+        CCase aCase = myGame.getCase(sourisX,sourisY);
+        System.out.print(aCase.getFree());
+    }
+
+    private class MyMouseListener extends MouseAdapter {
+        private int offsetX, offsetY;
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+            Component component = e.getComponent();
+            offsetX = e.getX();
+            offsetY = e.getY();
+            component.setCursor(new Cursor(Cursor.MOVE_CURSOR));
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+            e.getComponent().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        }
+
+        @Override
+        public void mouseDragged(MouseEvent e) {
+            Component component = e.getComponent();
+            int newX = component.getX() + e.getX() - offsetX;
+            int newY = component.getY() + e.getY() - offsetY;
+
+            component.setLocation(newX, newY);
+            repaint();
+        }
     }
 }

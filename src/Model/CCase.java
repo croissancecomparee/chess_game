@@ -8,7 +8,8 @@ public class CCase{
     private int ordinate;
     private Rectangle rectangle;
     private Color color;
-    private boolean free;
+    private Color baseColor;
+    private boolean free = true;
     public CCase(Rectangle rectangle, Color color, String s, int i, boolean free){
         this.rectangle = new Rectangle(0,0,50,50);
     }
@@ -17,6 +18,7 @@ public class CCase{
         this.abscissa = letter;
         this.ordinate = number;
         this.color = color;
+        this.baseColor = color;
         this.free = free;
     }
     public char getLetter() {
@@ -29,9 +31,11 @@ public class CCase{
         return color;
     }
     public void setColor(Color newColor) {this.color = newColor;}
+    public void resetColor() {this.color = this.baseColor; }
     public boolean getFree() {
         return free;
     }
+    public void setFree(boolean newState ) { free = newState; }
     public void draw(Graphics g) {
         // changing the pencil color:
         g.setColor(this.getColor());
