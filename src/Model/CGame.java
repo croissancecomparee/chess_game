@@ -12,6 +12,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class CGame {
@@ -143,10 +145,42 @@ public class CGame {
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Votre logique en réponse au clic sur le bouton
+//                plateau.getCase(plateau.getAbscissaCoordinate(piece.getLetter()),
+//                        plateau.getordinateCoordinate(piece.getNumber())).setColor(Color.WHITE);
+//                CCase aCase = plateau.getCase(,1);
+                plateau.getCaseWithCoordinate(piece.getLetter(),piece.getNumber()).setColor(Color.CYAN);
+//                plateau.getCase(),1).setColor(Color.CYAN);
             }
         });
 
+//        button.addMouseListener(new MyMouseListener());
         return button;
+    }
+
+    private class MyMouseListener extends MouseAdapter {
+        private int offsetX, offsetY;
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+            Component component = e.getComponent();
+            offsetX = e.getX();
+            offsetY = e.getY();
+            component.setCursor(new Cursor(Cursor.MOVE_CURSOR));
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+            e.getComponent().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        }
+
+        @Override
+        public void mouseDragged(MouseEvent e) {
+            Component component = e.getComponent();
+            int newX = component.getX() + e.getX() - offsetX;
+            int newY = component.getY() + e.getY() - offsetY;
+
+            component.setLocation(newX, newY);
+        }
     }
 
     private Font getResizedFont(Font font, int newSize) {

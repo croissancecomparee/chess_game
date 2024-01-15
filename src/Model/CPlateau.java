@@ -17,17 +17,17 @@ public class CPlateau {
         this.cases = new ArrayList<>();
 
         // ajout des valeurs:
-        for (int i=1;i<9;i++) {
+        for (int i=1;i<10;i++) {
             for (int j=0;j<8;j++) {
                 CCase nouvelleCase =
                         new CCase(
                                 new Rectangle(
                                         (int) cointSuperieurGauche.getX()+j*weightCase,
-                                        (int) cointSuperieurGauche.getY()+i*weightCase,
+                                        (int) cointSuperieurGauche.getY()+(9-i)*weightCase,
                                         weightCase,weightCase),
-                                this.color[(i+j)%2],
+                                this.color[(i+j+1)%2],
                                 letterCoordinate[j],
-                                i,
+                                i-1,
                                 true);
                 this.cases.add(nouvelleCase);
             }
@@ -35,7 +35,19 @@ public class CPlateau {
     }
 
     public CCase getCase(int i,int j) {
-        return this.cases.get(i*j);
+        System.out.print("\ni:"+i+"\tj:"+j);
+        int k = 8*(j-1)+i;
+        System.out.print("\ncoordinate case "+k+":"+this.cases.get(8*j+i).getLetter()+","+this.cases.get(8*j+i).getNumber());
+        return this.cases.get(8*(j-1)+i);
+    }
+
+    public CCase getCaseWithCoordinate(char letter, int j) {
+        int i = 0;
+        while (letter!=letterCoordinate[i]) {
+            i++;
+        }
+        System.out.print("\ncoordonnees:("+i+","+j+")");
+        return getCase(i,j);
     }
 
     public int getAbscissaCoordinate(char letter) {

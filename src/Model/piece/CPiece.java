@@ -15,14 +15,14 @@ public abstract class CPiece {
         ordinate = ordinateC;
     }
 
-    public String getUnicode() {
-        return unicode;
-    }
+    public String getUnicode() { return unicode; }
 
     public char getLetter() {
+        System.out.print("\nLetter:"+abscissa);
         return abscissa;
     }
     public int getNumber() {
+        System.out.print("\nNumber:"+ordinate);
         return ordinate;
     }
 }
