@@ -18,6 +18,8 @@ public class DatabaseConnection {
                 String password = "polytech";
                 connection = DriverManager.getConnection(url, user, password);
                 System.out.print("\nConnected");
+
+
             }
             catch (ClassNotFoundException | SQLException e){
                 e.printStackTrace();
