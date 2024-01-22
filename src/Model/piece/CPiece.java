@@ -11,9 +11,9 @@ public abstract class CPiece {
     private char abscissa;
     private int ordinate;
     private boolean selected = false;
-    private JButton button;
-    private int widthButton=89;
-    private int heightButton=60;
+    private JTextArea textArea;
+    private int widthTextArea=150;
+    private int heightTextArea=60;
 
     public CPiece(String unicodeC, int colorC, char abscissaC, int ordinateC) {
         unicode = unicodeC;
@@ -36,11 +36,11 @@ public abstract class CPiece {
     public void setSelected(boolean newState) {
         selected = newState;
     }
-    public JButton getButton () {
-        return button;
+    public JTextArea getTextArea () {
+        return textArea;
     }
-    public void setButton (JButton newButton) {
-        button = newButton;
+    public void setTextArea (JTextArea newTextArea) {
+        textArea = newTextArea;
     }
 
     public int getColor() {
@@ -55,24 +55,24 @@ public abstract class CPiece {
         ordinate = number;
     }
 
-    public void movingButton(int x, int y) {
-        button.setBounds(x,y,widthButton,heightButton);
+    public void movingTextArea(int x, int y) {
+        textArea.setBounds(x,y,widthTextArea,heightTextArea);
     }
-    public void removeButtonFromPanel(MonPanel panel) {
-        JButton button = getButton();
-        if (button != null) {
-            Container parent = button.getParent();
+    public void removeTextAreaFromPanel(MonPanel panel) {
+        JTextArea textArea = getTextArea();
+        if (textArea != null) {
+            Container parent = textArea.getParent();
             if (parent != null) {
 //            button.setVisible(false);
 //            button.setEnabled(false);
-                parent.remove(button);
+                parent.remove(textArea);
                 parent.revalidate();
                 parent.repaint();
             }
-            setButton(null);
-            panel.remove(button);
+            setTextArea(null);
+            panel.remove(textArea);
             panel.repaint();
-            button = null;
+            textArea = null;
         }
     }
 }

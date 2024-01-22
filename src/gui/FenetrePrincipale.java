@@ -8,6 +8,7 @@ import java.awt.event.*;
 import Model.CCase;
 import Model.CGame;
 import Model.CPlateau;
+import Model.piece.CPiece;
 
 public class FenetrePrincipale extends JFrame {
 
@@ -118,6 +119,14 @@ public class FenetrePrincipale extends JFrame {
         if (myGame.getSelected()) {
             System.out.print("\ncoucouuu letter:"+aCase.getLetter()+"\tnumber:"+aCase.getNumber());
             myGame.moveSelected(aCase.getLetter(),aCase.getNumber(), myPanel);
+        }
+        else{
+            if (aCase.getFree() == false) {
+                CPiece pieceSelected = aCase.getPiece();
+                myGame.setSelectedPiece(pieceSelected);
+                myGame.setSelected(true);
+                System.out.print("\ncoucou"+pieceSelected+myGame.getSelected());
+            }
         }
     }
 

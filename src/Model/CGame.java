@@ -25,7 +25,7 @@ public class CGame {
     private CPiece selectedPiece = null;
     private boolean isAPieceSelected = false;
 
-//    private JButton button;
+//    private JTextArea TextArea;
 
     public CGame() {
         plateau = new CPlateau();
@@ -169,89 +169,89 @@ public class CGame {
     public void drawPieces(MonPanel panel) {
         // white
         for (CPiece piece : this.whitePieces) {
-            JButton button = createChessButton(piece, plateau);
-            panel.add(button);
-            button = null;
+            JTextArea textArea = createChessTextArea(piece, plateau);
+            panel.add(textArea);
+            textArea = null;
         }
 
         // black
         for (CPiece piece : this.blackPieces) {
-            JButton button = createChessButton(piece, plateau);
-            panel.add(button);
-            button = null;
+            JTextArea textArea = createChessTextArea(piece, plateau);
+            panel.add(textArea);
+            textArea = null;
         }
 
     }
 
-    private JButton createChessButton(CPiece piece, CPlateau plateau) {
-//        JButton existingButton = piece.getButton();
-//        if (existingButton != null) {
-//            Container parent = existingButton.getParent();
+    private JTextArea createChessTextArea(CPiece piece, CPlateau plateau) {
+//        JTextArea existingTextArea = piece.getTextArea();
+//        if (existingTextArea != null) {
+//            Container parent = existingTextArea.getParent();
 //            if (parent != null) {
-//                parent.remove(existingButton);
+//                parent.remove(existingTextArea);
 //            }
 //        }
 //
-//        JButton button = new JButton(piece.getUnicode()); //
-//        button.setBounds(
+//        JTextArea TextArea = new JTextArea(piece.getUnicode()); //
+//        TextArea.setBounds(
 //                plateau.getAbscissaCoordinate(piece.getLetter()),
 //                plateau.getordinateCoordinate(piece.getNumber()),
 //                89,60
 //        );
 //
-//        Font originalFont = button.getFont();
+//        Font originalFont = TextArea.getFont();
 ////        Font resizedFont = new Font("Arial Unicode MS", originalFont.getStyle(), 50);
 //        Font resizedFont = new Font(originalFont.getName(), Font.PLAIN, uniformFontSize);
-//        button.setFont(resizedFont);
+//        TextArea.setFont(resizedFont);
 //
-//        button.setOpaque(false);
-//        button.setContentAreaFilled(false);
-//        button.setBorderPainted(false);
+//        TextArea.setOpaque(false);
+//        TextArea.setContentAreaFilled(false);
+//        TextArea.setBorderPainted(false);
 //
-//        button.addActionListener(new ActionListener() {
+//        TextArea.addActionListener(new ActionListener() {
 //            public void actionPerformed(ActionEvent e) {
 ////                plateau.getCaseWithCoordinate(piece.getLetter(),piece.getNumber()).setColor(Color.CYAN);
 //                clickPiece(piece);
 //            }
 //        });
 //
-////        button.addMouseListener(new MyMouseListener());
-//        piece.setButton(button);
-//        return button;
-        JButton existingButton = piece.getButton();
-        if (existingButton != null) {
-            Container parent = existingButton.getParent();
+////        TextArea.addMouseListener(new MyMouseListener());
+//        piece.setTextArea(TextArea);
+//        return TextArea;
+        JTextArea existingTextArea = piece.getTextArea();
+        if (existingTextArea != null) {
+            Container parent = existingTextArea.getParent();
             if (parent != null) {
-                parent.remove(existingButton);
+                parent.remove(existingTextArea);
             }
-            piece.setButton(null);
+            piece.setTextArea(null);
         }
 
-        piece.setButton(new JButton(piece.getUnicode())); //
-        piece.getButton().setBounds(
+        piece.setTextArea(new JTextArea(piece.getUnicode())); //
+        piece.getTextArea().setBounds(
                 plateau.getAbscissaCoordinate(piece.getLetter()),
                 plateau.getordinateCoordinate(piece.getNumber()),
                 89,60
         );
 
-        Font originalFont = piece.getButton().getFont();
+        Font originalFont = piece.getTextArea().getFont();
 //        Font resizedFont = new Font("Arial Unicode MS", originalFont.getStyle(), 50);
         Font resizedFont = new Font(originalFont.getName(), Font.PLAIN, uniformFontSize);
-        piece.getButton().setFont(resizedFont);
+        piece.getTextArea().setFont(resizedFont);
 
-        piece.getButton().setOpaque(false);
-        piece.getButton().setContentAreaFilled(false);
-        piece.getButton().setBorderPainted(false);
+        piece.getTextArea().setOpaque(false);
+//        piece.getTextArea().setContentAreaFilled(false);
+//        piece.getTextArea().setBorderPainted(false);
+//
+//        piece.getTextArea().addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent e) {
+////                plateau.getCaseWithCoordinate(piece.getLetter(),piece.getNumber()).setColor(Color.CYAN);
+//                clickPiece(piece);
+//            }
+//        });
 
-        piece.getButton().addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-//                plateau.getCaseWithCoordinate(piece.getLetter(),piece.getNumber()).setColor(Color.CYAN);
-                clickPiece(piece);
-            }
-        });
-
-//        button.addMouseListener(new MyMouseListener());
-        return piece.getButton();
+//        TextArea.addMouseListener(new MyMouseListener());
+        return piece.getTextArea();
     }
 
     private Font getResizedFont(Font font, int newSize) {
@@ -286,6 +286,10 @@ public class CGame {
         this.isAPieceSelected = newState;
     }
 
+    public void setSelectedPiece(CPiece newSelectedPiece) {
+        selectedPiece = newSelectedPiece;
+    }
+
     public void movingPiece(CPiece pieceToMove, char letter, int number, MonPanel panel) {
         /* function that move the piece to coordinate */
         // getting the case
@@ -301,7 +305,7 @@ public class CGame {
             pieceToMove.move(letter,number);
             System.out.print("\ncoucou letter: "+letter+"\nnumber: "+number);
             System.out.print("\nheeyy abscisse: "+plateau.getAbscissaCoordinate(letter)+"\nordonnee: "+plateau.getordinateCoordinate(number));
-            pieceToMove.movingButton(plateau.getAbscissaCoordinate(letter),plateau.getordinateCoordinate(number));
+            pieceToMove.movingTextArea(plateau.getAbscissaCoordinate(letter),plateau.getordinateCoordinate(number));
 
 
             caseToGo.setFree(false);
@@ -311,7 +315,6 @@ public class CGame {
         }
         // there is a piece on the case
         else {
-            System.out.print("wesh");
             // checking the color of the piece0
             CPiece pieceOnTheCase = caseToGo.getPiece();
             // if opposite
@@ -332,7 +335,7 @@ public class CGame {
                 pieceToMove.move(letter,number);
                 System.out.print("\ncoucou walha letter: "+letter+"\nnumber: "+number);
                 System.out.print("\nheeyy abscisse: "+plateau.getAbscissaCoordinate(letter)+"\nordonnee: "+plateau.getordinateCoordinate(number));
-                pieceToMove.movingButton(plateau.getAbscissaCoordinate(letter),plateau.getordinateCoordinate(number));
+                pieceToMove.movingTextArea(plateau.getAbscissaCoordinate(letter),plateau.getordinateCoordinate(number));
 
 
                 caseToGo.setFree(false);
@@ -353,14 +356,14 @@ public class CGame {
     public void deletePiece(int color, CPiece pieceToDelete, MonPanel panel) {
         if (color == 0) {
             whitePieces.remove(pieceToDelete);
-            pieceToDelete.setButton(null);
+            pieceToDelete.setTextArea(null);
         }
         else {
             blackPieces.remove(pieceToDelete);
-            pieceToDelete.setButton(null);
+            pieceToDelete.setTextArea(null);
         }
         plateau.getCaseWithCoordinate(pieceToDelete.getLetter(),pieceToDelete.getNumber()).setPiece(null);
-        pieceToDelete.removeButtonFromPanel(panel);
+        pieceToDelete.removeTextAreaFromPanel(panel);
     }
 
     public void moveSelected(char letter, int number, MonPanel panel) {

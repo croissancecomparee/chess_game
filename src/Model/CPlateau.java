@@ -59,7 +59,7 @@ public class CPlateau {
         int i = x/80 ;
         int j = y/80;
 //        System.out.print("\ncoordonnees toto:("+i+","+j+")");
-        return getCase(i,9-j +1);
+        return getCase(i,9-j);
     }
 
     public int getAbscissaCoordinate(char letter) {
