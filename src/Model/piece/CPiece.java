@@ -1,11 +1,13 @@
 package Model.piece;
+import gui.MonPanel;
+
 import javax.swing.*;
-import java.awt.Graphics;
+import java.awt.*;
 
 public abstract class CPiece {
     private String name;
     private String unicode;
-    private int color_; // 0 for white, 1 for black
+    private int color; // 0 for white, 1 for black
     private char abscissa;
     private int ordinate;
     private boolean selected = false;
@@ -15,7 +17,7 @@ public abstract class CPiece {
 
     public CPiece(String unicodeC, int colorC, char abscissaC, int ordinateC) {
         unicode = unicodeC;
-        color_ = colorC;
+        color = colorC;
         abscissa = abscissaC;
         ordinate = ordinateC;
     }
@@ -23,11 +25,9 @@ public abstract class CPiece {
     public String getUnicode() { return unicode; }
 
     public char getLetter() {
-        System.out.print("\nLetter:"+abscissa);
         return abscissa;
     }
     public int getNumber() {
-        System.out.print("\nNumber:"+ordinate);
         return ordinate;
     }
     public boolean getSelected() {
@@ -43,6 +43,10 @@ public abstract class CPiece {
         button = newButton;
     }
 
+    public int getColor() {
+        return color;
+    }
+
     public void move(char letter, int number) {
         /* function that move a piece to coordinate in entry
         * the case is supposed to be free
@@ -53,5 +57,22 @@ public abstract class CPiece {
 
     public void movingButton(int x, int y) {
         button.setBounds(x,y,widthButton,heightButton);
+    }
+    public void removeButtonFromPanel(MonPanel panel) {
+        JButton button = getButton();
+        if (button != null) {
+            Container parent = button.getParent();
+            if (parent != null) {
+//            button.setVisible(false);
+//            button.setEnabled(false);
+                parent.remove(button);
+                parent.revalidate();
+                parent.repaint();
+            }
+            setButton(null);
+            panel.remove(button);
+            panel.repaint();
+            button = null;
+        }
     }
 }

@@ -2,6 +2,7 @@ package Model;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import Model.piece.CPiece;
 
 public class CCase{
     private char abscissa;
@@ -10,6 +11,7 @@ public class CCase{
     private Color color;
     private Color baseColor;
     private boolean free = true;
+    private CPiece relatedPiece = null;
     public CCase(Rectangle rectangle, Color color, String s, int i, boolean free){
         this.rectangle = new Rectangle(0,0,50,50);
     }
@@ -36,6 +38,8 @@ public class CCase{
         return free;
     }
     public void setFree(boolean newState ) { free = newState; }
+    public CPiece getPiece() {return relatedPiece;}
+    public void setPiece(CPiece newPiece) {relatedPiece = newPiece;}
     public void draw(Graphics g) {
         // changing the pencil color:
         g.setColor(this.getColor());
