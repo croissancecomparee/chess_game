@@ -2,7 +2,7 @@ use tpjavaimds5A;
 
 
 CREATE TABLE table_scores {
-    idScores NUMBER(5);
+    idScores INT PRIMARY KEY ;
     pseudo VARCHAR(20);
-    score NUMBER(6);
+    score INT;
 }

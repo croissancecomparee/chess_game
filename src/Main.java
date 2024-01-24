@@ -1,3 +1,5 @@
+import Model.DataAccesObject;
+import Model.DatabaseConnection;
 import gui.FenetrePrincipale;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
@@ -9,6 +11,15 @@ public class Main {
         FenetrePrincipale frame = new FenetrePrincipale();
         frame.setVisible(true);
         DataAccesObject dao = new DataAccesObject();
+
+        // creation of the database
+        dao.createTable();
+
+        dao.insertData("Toto",100);
+
+        dao.retrieveData();
+
+        DatabaseConnection.closeConnection();
         // Press Maj+F10 or click the green arrow button in the gutter to run the code.
     }
 }
