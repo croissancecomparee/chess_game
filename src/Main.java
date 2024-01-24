@@ -8,6 +8,7 @@ public class Main {
         // IntelliJ IDEA suggests fixing it.
         FenetrePrincipale frame = new FenetrePrincipale();
         frame.setVisible(true);
+        DataAccesObject dao = new DataAccesObject();
         // Press Maj+F10 or click the green arrow button in the gutter to run the code.
     }
 }

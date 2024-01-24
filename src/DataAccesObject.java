@@ -15,7 +15,7 @@ public class DataAccesObject {
         try {
             String sql = "SELECT * FROM table_scores";
             PreparedStatement statement = connection.prepareStatement(sql);
-            ResultSet resultSet = statement.executeQuery(sql);
+            ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
                 // treatment of result in the query
@@ -24,6 +24,9 @@ public class DataAccesObject {
                 System.out.print(resultSet.getString(1)+" "+resultSet.getInt(2));
 
             }
+
+            resultSet.close();
+            statement.close();
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();

@@ -13,13 +13,11 @@ public class DatabaseConnection {
 
                 // establishing the connection
                 String BDD = "tpjavaimds5A";
-                String url = "jdbc:mysql://172.16.23.115.3306/";
+                String url = "jdbc:mysql://172.16.23.115:3306/tpjavaimds5A";
                 String user = "IMDS5A";
-                String password = "polytech";
+                String password = "Polytech";
                 connection = DriverManager.getConnection(url, user, password);
                 System.out.print("\nConnected");
-
-
             }
             catch (ClassNotFoundException | SQLException e){
                 e.printStackTrace();
