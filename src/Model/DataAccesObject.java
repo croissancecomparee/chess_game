@@ -35,8 +35,6 @@ public class DataAccesObject {
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.print(e);
-        } finally {
-            DatabaseConnection.closeConnection();
         }
     }
 
