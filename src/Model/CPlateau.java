@@ -50,8 +50,8 @@ public class CPlateau {
         while (letter!=letterCoordinate[i]) {
             i++;
         }
-//        System.out.print("\ncoordonnees:("+i+","+j+")");
-        return getCase(i,j);
+        System.out.print("\ncoordonnees:("+i+","+j+")");
+        return getCase(i,j+1);
     }
 
     public CCase getCaseCoordinatePanel(int x, int y) {
@@ -59,7 +59,7 @@ public class CPlateau {
         int i = x/80 ;
         int j = y/80;
 //        System.out.print("\ncoordonnees toto:("+i+","+j+")");
-        return getCase(i,9-j);
+        return getCase(i,9-j+1);
     }
 
     public int getAbscissaCoordinate(char letter) {

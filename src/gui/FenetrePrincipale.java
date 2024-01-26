@@ -123,6 +123,7 @@ public class FenetrePrincipale extends JFrame {
         else{
             if (aCase.getFree() == false) {
                 CPiece pieceSelected = aCase.getPiece();
+                System.out.print("\ncoucou"+pieceSelected+myGame.getSelected());
                 myGame.setSelectedPiece(pieceSelected);
                 myGame.setSelected(true);
                 System.out.print("\ncoucou"+pieceSelected+myGame.getSelected());
