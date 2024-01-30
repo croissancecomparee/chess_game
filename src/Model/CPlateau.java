@@ -27,10 +27,9 @@ public class CPlateau {
                                 (int) cointSuperieurGauche.getX()+j*weightCase,
                                 (int) cointSuperieurGauche.getY()+(9-i)*weightCase,
                                 weightCase,weightCase),
-                        this.color[(i+j+1)%2],
+                        this.color[(i+j)%2],
                         letterCoordinate[j],
-                        i-1,
-                        true);
+                        i-1);
                 this.cases.add(nouvelleCase);
             }
         }
@@ -50,7 +49,7 @@ public class CPlateau {
         while (letter!=letterCoordinate[i]) {
             i++;
         }
-        System.out.print("\ncoordonnees:("+i+","+j+")");
+//        System.out.print("\ncoordonnees:("+i+","+j+")");
         return getCase(i,j+1);
     }
 

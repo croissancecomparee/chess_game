@@ -10,12 +10,12 @@ public class CCase{
     private Rectangle rectangle;
     private Color color;
     private Color baseColor;
-    private boolean free = true;
+    private boolean free = true; // a simplifier
     private CPiece relatedPiece = null;
-    public CCase(Rectangle rectangle, Color color, String s, int i, boolean free){
+    public CCase(Rectangle rectangle, Color color, String s, int i){
         this.rectangle = new Rectangle(0,0,50,50);
     }
-    public CCase(Rectangle rectangle, Color color, char letter, int number, boolean free) {
+    public CCase(Rectangle rectangle, Color color, char letter, int number) {
         this.rectangle = rectangle;
         this.abscissa = letter;
         this.ordinate = number;
@@ -34,8 +34,8 @@ public class CCase{
     }
     public void setColor(Color newColor) {this.color = newColor;}
     public void resetColor() {this.color = this.baseColor; }
-    public boolean getFree() {
-        return free;
+    public boolean isFree() {
+        return relatedPiece==null;
     }
     public void setFree(boolean newState ) { free = newState; }
     public CPiece getPiece() {return relatedPiece;}

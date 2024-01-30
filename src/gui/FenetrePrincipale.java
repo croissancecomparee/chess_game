@@ -113,19 +113,18 @@ public class FenetrePrincipale extends JFrame {
         int sourisX = evt.getPoint().x;
         int sourisY = evt.getPoint().y;
         CCase aCase = myGame.getCase(sourisX,sourisY);
-        System.out.print("\n is case free ? "+aCase.getFree());
+        System.out.print("\n is case free ? "+aCase.isFree());
         System.out.print("\n is a piece selected ? "+myGame.getSelected());
         System.out.print("\ncoucouuu letter:"+aCase.getLetter()+"\tnumber:"+aCase.getNumber());
         if (myGame.getSelected()) {
-            System.out.print("\ncoucouuu letter:"+aCase.getLetter()+"\tnumber:"+aCase.getNumber());
+            System.out.print("\ncoucouuu piece  selected letter:"+aCase.getLetter()+"\tnumber:"+aCase.getNumber());
             myGame.moveSelected(aCase.getLetter(),aCase.getNumber(), myPanel);
         }
         else{
-            if (aCase.getFree() == false) {
+            if (aCase.isFree() == false) {
                 CPiece pieceSelected = aCase.getPiece();
                 System.out.print("\ncoucou"+pieceSelected+myGame.getSelected());
-                myGame.setSelectedPiece(pieceSelected);
-                myGame.setSelected(true);
+                myGame.clickPiece(pieceSelected);
                 System.out.print("\ncoucou"+pieceSelected+myGame.getSelected());
             }
         }

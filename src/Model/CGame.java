@@ -17,13 +17,11 @@ import java.util.ArrayList;
 
 public class CGame {
     private CPlateau plateau;
-    private ArrayList<CPiece> whitePieces;
-    private ArrayList<CPiece> blackPieces;
+    private ArrayList<CPiece> pieces;
     private char[] letterCoordinate = new char[]{'A','B','C','D','E','F','G','H'};
     private int uniformFontSize = 53;
 
     private CPiece selectedPiece = null;
-    private boolean isAPieceSelected = false;
 
 //    private JTextArea TextArea;
 
@@ -32,7 +30,7 @@ public class CGame {
 
 
         // initialisation of white pieces array
-        this.whitePieces = new ArrayList<>();
+        this.pieces = new ArrayList<>();
 
         // adding white pawns
         for (int i=0;i<8;i++) {
@@ -40,8 +38,8 @@ public class CGame {
             CCase relatedCase = plateau.getCaseWithCoordinate(letterCoordinate[i],2);
             relatedCase.setFree(false);
             relatedCase.setPiece(newPawn);
-            System.out.print(" x: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+ relatedCase.getPiece());
-            this.whitePieces.add(newPawn);
+//            System.out.print(" x: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+ relatedCase.getPiece());
+            this.pieces.add(newPawn);
         }
 
         // adding Knights L : Left, R : Right
@@ -54,8 +52,8 @@ public class CGame {
         relatedCase.setFree(false);
         relatedCase.setPiece(newKnightWR);
         System.out.print(" x: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+ relatedCase.getPiece());
-        this.whitePieces.add(newKnightWL);
-        this.whitePieces.add(newKnightWR);
+        this.pieces.add(newKnightWL);
+        this.pieces.add(newKnightWR);
 
         // adding bishops L : Left, R : Right
         CBishop newBishopWL = new CBishop("\u2657",0,'C',1);
@@ -68,8 +66,8 @@ public class CGame {
         relatedCase.setFree(false);
         relatedCase.setPiece(newBishopWR);
         System.out.print(" x: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+ relatedCase.getPiece());
-        this.whitePieces.add(newBishopWL);
-        this.whitePieces.add(newBishopWR);
+        this.pieces.add(newBishopWL);
+        this.pieces.add(newBishopWR);
 
         // adding towers L : Left, R : Right
         CTower newTowerWL = new CTower("\u2656",0,'A',1);
@@ -82,8 +80,8 @@ public class CGame {
         relatedCase.setFree(false);
         relatedCase.setPiece(newTowerWR);
         System.out.print(" x: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+ relatedCase.getPiece());
-        this.whitePieces.add(newTowerWL);
-        this.whitePieces.add(newTowerWR);
+        this.pieces.add(newTowerWL);
+        this.pieces.add(newTowerWR);
 
         // adding queen
         CQueen newQueenW = new CQueen("\u2655",0,'D',1);
@@ -91,7 +89,7 @@ public class CGame {
         relatedCase.setFree(false);
         relatedCase.setPiece(newQueenW);
         System.out.print(" x: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+ relatedCase.getPiece());
-        this.whitePieces.add(newQueenW);
+        this.pieces.add(newQueenW);
 
         // adding king
         CKing newKingW = new CKing("\u2654",0,'E',1);
@@ -99,11 +97,7 @@ public class CGame {
         relatedCase.setFree(false);
         relatedCase.setPiece(newKingW);
         System.out.print(" x: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+ relatedCase.getPiece());
-        this.whitePieces.add(newKingW);
-
-
-        // initialisation of black pieces array
-        this.blackPieces = new ArrayList<>();
+        this.pieces.add(newKingW);
 
         // adding black pawns
         for (int i=0;i<8;i++) {
@@ -112,7 +106,7 @@ public class CGame {
             relatedCase.setFree(false);
             relatedCase.setPiece(newPawn);
             System.out.print(" x: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+ relatedCase.getPiece());
-            this.blackPieces.add(newPawn);
+            this.pieces.add(newPawn);
         }
 
         // adding Knights L : Left, R : Right
@@ -126,8 +120,8 @@ public class CGame {
         relatedCase.setFree(false);
         relatedCase.setPiece(newKnightBR);
         System.out.print(" x: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+ relatedCase.getPiece());
-        this.blackPieces.add(newKnightBL);
-        this.blackPieces.add(newKnightBR);
+        this.pieces.add(newKnightBL);
+        this.pieces.add(newKnightBR);
 
         // adding bishops L : Left, R : Right
         CBishop newBishopBL = new CBishop("\u265D",1,'C',8);
@@ -140,8 +134,8 @@ public class CGame {
         relatedCase.setFree(false);
         relatedCase.setPiece(newBishopBR);
         System.out.print(" x: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+ relatedCase.getPiece());
-        this.blackPieces.add(newBishopBL);
-        this.blackPieces.add(newBishopBR);
+        this.pieces.add(newBishopBL);
+        this.pieces.add(newBishopBR);
 
         // adding towers L : Left, R : Right
         CTower newTowerBL = new CTower("\u265C",1,'A',8);
@@ -154,8 +148,8 @@ public class CGame {
         relatedCase.setFree(false);
         relatedCase.setPiece(newTowerBR);
         System.out.print(" x: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+ relatedCase.getPiece());
-        this.blackPieces.add(newTowerBL);
-        this.blackPieces.add(newTowerBR);
+        this.pieces.add(newTowerBL);
+        this.pieces.add(newTowerBR);
 
         // adding queen
         CQueen newQueenB = new CQueen("\u265B",1,'D',8);
@@ -163,7 +157,7 @@ public class CGame {
         relatedCase.setFree(false);
         relatedCase.setPiece(newQueenB);
         System.out.print(" x: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+ relatedCase.getPiece());
-        this.blackPieces.add(newQueenB);
+        this.pieces.add(newQueenB);
 
         // adding king
         CKing newKingB = new CKing("\u265A",1,'E',8);
@@ -171,7 +165,7 @@ public class CGame {
         relatedCase.setFree(false);
         relatedCase.setPiece(newKingB);
         System.out.print(" x: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+ relatedCase.getPiece());
-        this.blackPieces.add(newKingB);
+        this.pieces.add(newKingB);
     }
 
     /*// A voir si c plus simple de passer par une fonction ou pas
@@ -185,14 +179,14 @@ public class CGame {
 
     public void drawPieces(MonPanel panel) {
         // white
-        for (CPiece piece : this.whitePieces) {
+        for (CPiece piece : this.pieces) {
             JTextArea textArea = createChessTextArea(piece, plateau);
             panel.add(textArea);
             textArea = null;
         }
 
         // black
-        for (CPiece piece : this.blackPieces) {
+        for (CPiece piece : this.pieces) {
             JTextArea textArea = createChessTextArea(piece, plateau);
             panel.add(textArea);
             textArea = null;
@@ -278,14 +272,15 @@ public class CGame {
     public void clickPiece(CPiece clickedPiece) {
         if (this.selectedPiece == null) {
             this.selectedPiece = clickedPiece;
+            setSelectedPiece(clickedPiece);
+            System.out.print("coucou toi");
             CCase startCase = plateau.getCaseWithCoordinate(clickedPiece.getLetter(),clickedPiece.getNumber());
             startCase.setColor(Color.CYAN);
-            isAPieceSelected = true;
         }
         else {
             CCase lastCase = plateau.getCaseWithCoordinate(selectedPiece.getLetter(),selectedPiece.getNumber());
             lastCase.resetColor();
-            this.selectedPiece = null;//clickedPiece;
+            this.selectedPiece = null;
 //            CCase startCase = plateau.getCaseWithCoordinate(clickedPiece.getLetter(),clickedPiece.getNumber());
 //            startCase.setColor(Color.CYAN);
         }
@@ -296,11 +291,7 @@ public class CGame {
     }
 
     public boolean getSelected() {
-        return isAPieceSelected;
-    }
-
-    public void setSelected(boolean newState) {
-        this.isAPieceSelected = newState;
+        return selectedPiece!=null;
     }
 
     public void setSelectedPiece(CPiece newSelectedPiece) {
@@ -311,10 +302,10 @@ public class CGame {
         /* function that move the piece to coordinate */
         // getting the case
         CCase caseToGo = plateau.getCaseWithCoordinate(letter, number);
-        System.out.print("\ncoucouuggzgzu letter:"+caseToGo.getLetter()+"\tnumber:"+caseToGo.getNumber()+number);
+        System.out.print("\nmoving piece to case: letter:"+caseToGo.getLetter()+"\tnumber:"+caseToGo.getNumber()+number);
         // no piece on it
-        if (caseToGo.getFree()) {
-            System.out.print("\ncoucouuggzgzutrgeaggregre letter:"+pieceToMove.getLetter()+"\tnumber:"+pieceToMove.getNumber());
+        if (caseToGo.isFree()) {
+            System.out.print("\nsetselected case libre letter:"+pieceToMove.getLetter()+"\tnumber:"+pieceToMove.getNumber());
             CCase oldCase = plateau.getCaseWithCoordinate(pieceToMove.getLetter(),pieceToMove.getNumber());
             plateau.getCaseWithCoordinate(pieceToMove.getLetter(),pieceToMove.getNumber()).setPiece(null);
             plateau.getCaseWithCoordinate(pieceToMove.getLetter(),pieceToMove.getNumber()).setFree(true);
@@ -329,37 +320,36 @@ public class CGame {
             caseToGo.setFree(false);
             caseToGo.setPiece(pieceToMove);
             selectedPiece = null;
-            isAPieceSelected = false;
         }
         // there is a piece on the case
         else {
             // checking the color of the piece0
             CPiece pieceOnTheCase = caseToGo.getPiece();
+            System.out.print("\npiece: "+caseToGo.getPiece());
             // if opposite
             // then eat
             if (pieceOnTheCase.getColor() != pieceToMove.getColor()) {
-                deletePiece(pieceOnTheCase.getColor(), pieceOnTheCase, panel);
+//                pieces.remove(pieceOnTheCase);
+                deletePiece(caseToGo.getPiece(), panel);
+                pieceOnTheCase.move('Z',-1);
+                pieceOnTheCase.movingTextArea(1000,10000);
                 System.out.print("\nPiece on the case ?: "+caseToGo.getPiece());
-                System.out.print("\nwhitepieces ? "+whitePieces.contains(pieceOnTheCase));
-                System.out.print("\nblackpieces ?"+blackPieces.contains(pieceOnTheCase));
-                pieceOnTheCase = null;
-
+                System.out.print("\npieces in the table? "+pieces.contains(pieceOnTheCase));
 
                 CCase oldCase = plateau.getCaseWithCoordinate(pieceToMove.getLetter(),pieceToMove.getNumber());
                 oldCase.setPiece(null);
                 oldCase.setFree(true);
                 oldCase.resetColor();
-
+//
                 pieceToMove.move(letter,number);
-                System.out.print("\ncoucou walha letter: "+letter+"\nnumber: "+number);
-                System.out.print("\nheeyy abscisse: "+plateau.getAbscissaCoordinate(letter)+"\nordonnee: "+plateau.getordinateCoordinate(number));
+                System.out.print("\ncase to go letter: "+letter+"\nnumber: "+number);
+                System.out.print("\ncase to go abscisse: "+plateau.getAbscissaCoordinate(letter)+"\nordonnee: "+plateau.getordinateCoordinate(number));
                 pieceToMove.movingTextArea(plateau.getAbscissaCoordinate(letter),plateau.getordinateCoordinate(number));
-
-
+//
                 caseToGo.setFree(false);
+                caseToGo.setPiece(null);
                 caseToGo.setPiece(pieceToMove);
-                selectedPiece = null;
-                isAPieceSelected = false;
+//                selectedPiece = null;
 
                 System.out.print("\nPiece on the case ?: "+caseToGo.getPiece());
             }
@@ -371,17 +361,14 @@ public class CGame {
         }
     }
 
-    public void deletePiece(int color, CPiece pieceToDelete, MonPanel panel) {
-        if (color == 0) {
-            whitePieces.remove(pieceToDelete);
-            pieceToDelete.setTextArea(null);
-        }
-        else {
-            blackPieces.remove(pieceToDelete);
-            pieceToDelete.setTextArea(null);
-        }
-        plateau.getCaseWithCoordinate(pieceToDelete.getLetter(),pieceToDelete.getNumber()).setPiece(null);
-        pieceToDelete.removeTextAreaFromPanel(panel);
+    public void deletePiece(CPiece pieceToDelete, MonPanel panel) {
+//        pieces.remove(pieceToDelete);
+//        System.out.print("\n ou es tu ?"+pieces.contains(pieceToDelete));
+        pieceToDelete.setUnicode("");
+//        pieceToDelete.setTextArea(null);
+//        plateau.getCaseWithCoordinate(pieceToDelete.getLetter(),pieceToDelete.getNumber()).setPiece(null);
+//        pieceToDelete.removeTextAreaFromPanel(panel);
+//        pieceToDelete.dispose();
     }
 
     public void moveSelected(char letter, int number, MonPanel panel) {

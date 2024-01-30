@@ -43,8 +43,15 @@ public abstract class CPiece {
         textArea = newTextArea;
     }
 
+    public void setUnicode(String newUnicode) {unicode = newUnicode;}
+
     public int getColor() {
         return color;
+    }
+
+    public void dispose() {
+        abscissa = 'Z';
+        ordinate = -1;
     }
 
     public void move(char letter, int number) {
