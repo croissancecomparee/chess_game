@@ -27,6 +27,14 @@ public abstract class CPiece {
     public char getLetter() {
         return abscissa;
     }
+    public int letterToNumber(char letter) {
+        char[] letterCoordinate = new char[]{'A','B','C','D','E','F','G','H'};
+        int i = 0;
+        while (letter != letterCoordinate[i]) {
+            i+=1;
+        }
+        return i;
+    }
     public int getNumber() {
         return ordinate;
     }
@@ -82,4 +90,6 @@ public abstract class CPiece {
             textArea = null;
         }
     }
+
+    public abstract boolean getLegalMove(char letterToGo,int numberToGo);
 }
