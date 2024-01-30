@@ -2,14 +2,14 @@ package gui;
 
 import javax.swing.* ;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 
 import Model.DataAccesObject;
 import Model.CCase;
 import Model.CGame;
 import Model.CPlateau;
+import Model.piece.CPiece;
 
 public class FenetrePrincipale extends JFrame {
 
@@ -55,18 +55,46 @@ public class FenetrePrincipale extends JFrame {
         pack();
         setLocationRelativeTo(null);
 
-//        button = new JButton("\u2654");
-//        button.setFont(getResizedFont(button.getFont(), 50));
-//        button.setBounds(10,10,500,500);
+//        button = new JButton("\u2659");
+//        button.setBounds(10, 10, 89, 60);
+//        button.setFont(new Font("Arial Unicode MS", Font.PLAIN, 50));
 //        button.setOpaque(false);
 //        button.setContentAreaFilled(false);
 //        button.setBorderPainted(false);
+
+
+//        MyMouseListener myMouseListener = new MyMouseListener();
+//        button.addMouseListener(new MouseListener() {
+//
+//        }
+        myPanel.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                formMouseClicked(e);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+
 //        myPanel.add(button);
-//        //this.setContentPane(myPanel);
-//
-//        button.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//
 //            }
 //        });
         //this.setContentPane(myPanel);
@@ -105,11 +133,6 @@ public class FenetrePrincipale extends JFrame {
         Graphics bufferGraphics;
         Image offscreen;
 
-        /*myCase1 = new CCase(new Rectangle(50,50,50,50), Color.GREEN,'A',1,true);
-        myCase2 = new CCase(new Rectangle(100,50,50,50), Color.PINK,'B',1,true);*/
-        //myBoard = new CPlateau();
-
-
 
         setLocationRelativeTo(null);
         // On crée une image en mémoire de la taille du ContentPane
@@ -122,5 +145,55 @@ public class FenetrePrincipale extends JFrame {
         myGame.draw(bufferGraphics);
 
         g.drawImage(offscreen,0,0,null);
+    }
+
+    private void formMouseClicked(MouseEvent evt) {
+        int sourisX = evt.getPoint().x;
+        int sourisY = evt.getPoint().y;
+        CCase aCase = myGame.getCase(sourisX,sourisY);
+        System.out.print("\n is case free ? "+aCase.isFree());
+        System.out.print("\n is a piece selected ? "+myGame.getSelected());
+        System.out.print("\ncoucouuu letter:"+aCase.getLetter()+"\tnumber:"+aCase.getNumber());
+        if (myGame.getSelected()) {
+            System.out.print("\ncoucouuu piece  selected letter:"+aCase.getLetter()+"\tnumber:"+aCase.getNumber());
+            myGame.moveSelected(aCase.getLetter(),aCase.getNumber(), myPanel);
+            myPanel.repaint();
+        }
+        else{
+            if (aCase.isFree() == false) {
+                CPiece pieceSelected = aCase.getPiece();
+                System.out.print("\ncoucou"+pieceSelected+myGame.getSelected());
+                myGame.clickPiece(pieceSelected);
+                myPanel.repaint();
+                System.out.print("\ncoucou"+pieceSelected+myGame.getSelected());
+            }
+        }
+    }
+
+    private class MyMouseListener extends MouseAdapter {
+        private int offsetX, offsetY;
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+            Component component = e.getComponent();
+            offsetX = e.getX();
+            offsetY = e.getY();
+            component.setCursor(new Cursor(Cursor.MOVE_CURSOR));
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+            e.getComponent().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        }
+
+        @Override
+        public void mouseDragged(MouseEvent e) {
+            Component component = e.getComponent();
+            int newX = component.getX() + e.getX() - offsetX;
+            int newY = component.getY() + e.getY() - offsetY;
+
+            component.setLocation(newX, newY);
+            repaint();
+        }
     }
 }
