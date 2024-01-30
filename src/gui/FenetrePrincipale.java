@@ -25,10 +25,12 @@ public class FenetrePrincipale extends JFrame {
     private DataAccesObject dao;
 
     public FenetrePrincipale() {
-        this.dao = new DataAccesObject();
 
-        // creation of the database
-        dao.createTable();
+//        database connection when database connection available
+//        this.dao = new DataAccesObject();
+//
+//        // creation of the database
+//        dao.createTable();
 
 
 
@@ -55,18 +57,6 @@ public class FenetrePrincipale extends JFrame {
         pack();
         setLocationRelativeTo(null);
 
-//        button = new JButton("\u2659");
-//        button.setBounds(10, 10, 89, 60);
-//        button.setFont(new Font("Arial Unicode MS", Font.PLAIN, 50));
-//        button.setOpaque(false);
-//        button.setContentAreaFilled(false);
-//        button.setBorderPainted(false);
-
-
-//        MyMouseListener myMouseListener = new MyMouseListener();
-//        button.addMouseListener(new MouseListener() {
-//
-//        }
         myPanel.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -94,9 +84,6 @@ public class FenetrePrincipale extends JFrame {
             }
         });
 
-//        myPanel.add(button);
-//            }
-//        });
         //this.setContentPane(myPanel);
         JButton button1 = new JButton("J1agagne");
         JButton button2 = new JButton("J2 a gagne");
@@ -106,15 +93,17 @@ public class FenetrePrincipale extends JFrame {
         button1.addActionListener(new ActionListener() {
 //            @Override
            public void actionPerformed(ActionEvent e) {
-               dao.insertData("J1",500);
-               dao.retrieveData();
+//               dao.insertData("J1",500);
+//               dao.retrieveData();
+               System.out.print("\nJ1 won ! ");
             }
         });
         button2.addActionListener(new ActionListener() {
             //            @Override
             public void actionPerformed(ActionEvent e) {
-                dao.insertData("J2",500);
-                dao.retrieveData();
+//                dao.insertData("J2",500);
+//                dao.retrieveData();
+                System.out.print("\nJ2 won ! ");
             }
         });
 
@@ -122,7 +111,7 @@ public class FenetrePrincipale extends JFrame {
         myPanel.add(button2);
 
 
-        dao.retrieveData();
+//        dao.retrieveData();
     }
 
     private Font getResizedFont(Font font, int newSize) {
