@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 
+import Model.DataAccesObject;
 import Model.CCase;
 import Model.CGame;
 import Model.CPlateau;
@@ -21,8 +22,17 @@ public class FenetrePrincipale extends JFrame {
     private CPlateau myBoard;
     private CGame myGame;
     private JButton button;
+    private DataAccesObject dao;
 
     public FenetrePrincipale() {
+        this.dao = new DataAccesObject();
+
+        // creation of the database
+        dao.createTable();
+
+
+
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100,100,800,600);
         setTitle("chess game");
@@ -85,6 +95,34 @@ public class FenetrePrincipale extends JFrame {
         });
 
 //        myPanel.add(button);
+//            }
+//        });
+        //this.setContentPane(myPanel);
+        JButton button1 = new JButton("J1agagne");
+        JButton button2 = new JButton("J2 a gagne");
+        button1.setBounds(650,20,100,50);
+        button2.setBounds(650,100,100,50);
+
+        button1.addActionListener(new ActionListener() {
+//            @Override
+           public void actionPerformed(ActionEvent e) {
+               dao.insertData("J1",500);
+               dao.retrieveData();
+            }
+        });
+        button2.addActionListener(new ActionListener() {
+            //            @Override
+            public void actionPerformed(ActionEvent e) {
+                dao.insertData("J2",500);
+                dao.retrieveData();
+            }
+        });
+
+        myPanel.add(button1);
+        myPanel.add(button2);
+
+
+        dao.retrieveData();
     }
 
     private Font getResizedFont(Font font, int newSize) {
