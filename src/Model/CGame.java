@@ -325,7 +325,7 @@ public class CGame {
 
             caseToGo.setFree(false);
             caseToGo.setPiece(pieceToMove);
-            plateau.getCaseWithCoordinate(letter, number-1).setColor(Color.GREEN);
+//            plateau.getCaseWithCoordinate(letter, number-1).setColor(Color.GREEN);
             selectedPiece = null;
         }
         // there is a piece on the case
@@ -346,7 +346,7 @@ public class CGame {
                 CCase oldCase = plateau.getCaseWithCoordinate(pieceToMove.getLetter(),pieceToMove.getNumber());
                 oldCase.setPiece(null);
                 oldCase.setFree(true);
-                plateau.getCaseWithCoordinate(pieceToMove.getLetter(),pieceToMove.getNumber()-1).setColor(Color.BLUE);
+                plateau.getCaseWithCoordinate(pieceToMove.getLetter(),pieceToMove.getNumber()-1).resetColor();
 //                oldCase.resetColor();
 //
                 pieceToMove.move(letter,number);
@@ -356,13 +356,17 @@ public class CGame {
 //
                 caseToGo.setFree(false);
                 caseToGo.setPiece(pieceToMove);
-//                selectedPiece = null;
+                selectedPiece = null;
 
                 System.out.print("\nPiece on the case ?: "+caseToGo.getPiece());
             }
             // else
             // do nothing
             else {
+                if (pieceToMove.getLetter()==letter & pieceToMove.getNumber()==number) {
+                    selectedPiece = null;
+                    plateau.getCaseWithCoordinate(pieceToMove.getLetter(),pieceToMove.getNumber()-1).resetColor();
+                }
                 System.out.print("The case is already occupied");
             }
         }
