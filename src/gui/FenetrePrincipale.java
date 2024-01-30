@@ -119,12 +119,14 @@ public class FenetrePrincipale extends JFrame {
         if (myGame.getSelected()) {
             System.out.print("\ncoucouuu piece  selected letter:"+aCase.getLetter()+"\tnumber:"+aCase.getNumber());
             myGame.moveSelected(aCase.getLetter(),aCase.getNumber(), myPanel);
+            myPanel.repaint();
         }
         else{
             if (aCase.isFree() == false) {
                 CPiece pieceSelected = aCase.getPiece();
                 System.out.print("\ncoucou"+pieceSelected+myGame.getSelected());
                 myGame.clickPiece(pieceSelected);
+                myPanel.repaint();
                 System.out.print("\ncoucou"+pieceSelected+myGame.getSelected());
             }
         }

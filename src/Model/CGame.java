@@ -273,13 +273,17 @@ public class CGame {
         if (this.selectedPiece == null) {
             this.selectedPiece = clickedPiece;
             setSelectedPiece(clickedPiece);
-            System.out.print("coucou toi");
-            CCase startCase = plateau.getCaseWithCoordinate(clickedPiece.getLetter(),clickedPiece.getNumber());
+            System.out.print("piece cliquée"+clickedPiece);
+            CCase startCase = plateau.getCaseWithCoordinate(clickedPiece.getLetter(),clickedPiece.getNumber()-1);
+            System.out.print("\nclickpiece letter: "+clickedPiece.getLetter()+" number: "+clickedPiece.getNumber());
             startCase.setColor(Color.CYAN);
+            System.out.print("\ncouleur: "+startCase.getColor());
         }
         else {
-            CCase lastCase = plateau.getCaseWithCoordinate(selectedPiece.getLetter(),selectedPiece.getNumber());
-            lastCase.resetColor();
+            System.out.print("\nBWLAAAAAARAGERAGEAGEAGESDHRTSJRTJRDJTRJTRJTRJTJGFDJFJJJ");
+            CCase lastCase = plateau.getCaseWithCoordinate(selectedPiece.getLetter(),selectedPiece.getNumber()-1);
+            System.out.print("\nselected letter: "+selectedPiece.getLetter()+" number: "+selectedPiece.getNumber());
+            lastCase.setColor(Color.GREEN);
             this.selectedPiece = null;
 //            CCase startCase = plateau.getCaseWithCoordinate(clickedPiece.getLetter(),clickedPiece.getNumber());
 //            startCase.setColor(Color.CYAN);
@@ -302,23 +306,26 @@ public class CGame {
         /* function that move the piece to coordinate */
         // getting the case
         CCase caseToGo = plateau.getCaseWithCoordinate(letter, number);
-        System.out.print("\nmoving piece to case: letter:"+caseToGo.getLetter()+"\tnumber:"+caseToGo.getNumber()+number);
+        System.out.print("\nmoving piece to case: letter:"+caseToGo.getLetter()+"\tnumber:"+caseToGo.getNumber());
         // no piece on it
         if (caseToGo.isFree()) {
             System.out.print("\nsetselected case libre letter:"+pieceToMove.getLetter()+"\tnumber:"+pieceToMove.getNumber());
             CCase oldCase = plateau.getCaseWithCoordinate(pieceToMove.getLetter(),pieceToMove.getNumber());
             plateau.getCaseWithCoordinate(pieceToMove.getLetter(),pieceToMove.getNumber()).setPiece(null);
             plateau.getCaseWithCoordinate(pieceToMove.getLetter(),pieceToMove.getNumber()).setFree(true);
-            oldCase.resetColor();
+            plateau.getCaseWithCoordinate(pieceToMove.getLetter(),pieceToMove.getNumber()-1).resetColor();
+            System.out.print("\ncouleur oldcase: "+ oldCase.getColor());
+            System.out.print("\nmoving piece from case: letter:"+oldCase.getLetter()+"\tnumber:"+oldCase.getNumber());
 
             pieceToMove.move(letter,number);
-            System.out.print("\ncoucou letter: "+letter+"\nnumber: "+number);
-            System.out.print("\nheeyy abscisse: "+plateau.getAbscissaCoordinate(letter)+"\nordonnee: "+plateau.getordinateCoordinate(number));
+            System.out.print("\ncase to go letter: "+letter+"\nnumber: "+number);
+            System.out.print("\ncoordinate to go abscisse: "+plateau.getAbscissaCoordinate(letter)+"\nordonnee: "+plateau.getordinateCoordinate(number));
             pieceToMove.movingTextArea(plateau.getAbscissaCoordinate(letter),plateau.getordinateCoordinate(number));
 
 
             caseToGo.setFree(false);
             caseToGo.setPiece(pieceToMove);
+            plateau.getCaseWithCoordinate(letter, number-1).setColor(Color.GREEN);
             selectedPiece = null;
         }
         // there is a piece on the case
@@ -329,7 +336,7 @@ public class CGame {
             // if opposite
             // then eat
             if (pieceOnTheCase.getColor() != pieceToMove.getColor()) {
-//                pieces.remove(pieceOnTheCase);
+                pieces.remove(pieceOnTheCase);
                 deletePiece(caseToGo.getPiece(), panel);
                 pieceOnTheCase.move('Z',-1);
                 pieceOnTheCase.movingTextArea(1000,10000);
@@ -339,7 +346,8 @@ public class CGame {
                 CCase oldCase = plateau.getCaseWithCoordinate(pieceToMove.getLetter(),pieceToMove.getNumber());
                 oldCase.setPiece(null);
                 oldCase.setFree(true);
-                oldCase.resetColor();
+                plateau.getCaseWithCoordinate(pieceToMove.getLetter(),pieceToMove.getNumber()-1).setColor(Color.BLUE);
+//                oldCase.resetColor();
 //
                 pieceToMove.move(letter,number);
                 System.out.print("\ncase to go letter: "+letter+"\nnumber: "+number);
@@ -347,7 +355,6 @@ public class CGame {
                 pieceToMove.movingTextArea(plateau.getAbscissaCoordinate(letter),plateau.getordinateCoordinate(number));
 //
                 caseToGo.setFree(false);
-                caseToGo.setPiece(null);
                 caseToGo.setPiece(pieceToMove);
 //                selectedPiece = null;
 
