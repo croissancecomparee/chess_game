@@ -309,7 +309,7 @@ public class CGame {
         System.out.print("\nmoving piece to case: letter:"+caseToGo.getLetter()+"\tnumber:"+caseToGo.getNumber());
         // no piece on it
         // checking if it is a legal move or not
-        if (pieceToMove.getLegalMove(letter, number)) {
+        if (pieceToMove.getLegalMove(letter, number, caseToGo.isFree())) {
             System.out.print("\nThe move is legal");
             if (caseToGo.isFree()) {
                 System.out.print("\nsetselected case libre letter:" + pieceToMove.getLetter() + "\tnumber:" + pieceToMove.getNumber());

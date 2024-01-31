@@ -48,6 +48,7 @@ public abstract class CPiece {
     public JTextArea getTextArea () {
         return textArea;
     }
+    public String getName() {return name;}
     public void setTextArea (JTextArea newTextArea) {
         textArea = newTextArea;
     }
@@ -88,9 +89,8 @@ public abstract class CPiece {
             setTextArea(null);
             panel.remove(textArea);
             panel.repaint();
-            textArea = null;
         }
     }
 
-    public abstract boolean getLegalMove(char letterToGo,int numberToGo);
+    public abstract boolean getLegalMove(char letterToGo,int numberToGo, boolean isCaseFree);
 }
