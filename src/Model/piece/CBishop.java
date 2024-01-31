@@ -10,6 +10,6 @@ public class CBishop extends CPiece{
     };
     @Override
     public boolean getLegalMove(char letterToGo, int numberToGo) {
-        return abs(letterToNumber(letterToGo)-letterToNumber(this.getLetter())) == abs(numberToGo - this.getNumber());
+        return (letterToNumber(letterToGo)<9)&(letterToNumber(letterToGo)>-1)&(numberToGo<9)&(numberToGo>-1)&abs(letterToNumber(letterToGo)-letterToNumber(this.getLetter())) == abs(numberToGo - this.getNumber());
     }
 }

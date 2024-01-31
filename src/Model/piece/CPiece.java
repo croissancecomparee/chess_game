@@ -3,6 +3,7 @@ import gui.MonPanel;
 
 import javax.swing.*;
 import java.awt.*;
+import static java.lang.Math.abs;
 
 public abstract class CPiece {
     private String name;

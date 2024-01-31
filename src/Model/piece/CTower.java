@@ -8,6 +8,6 @@ public class CTower extends CPiece{
     };
     @Override
     public boolean getLegalMove(char letterToGo, int numberToGo) {
-        return (letterToGo==this.getLetter() || numberToGo==this.getNumber());
+        return (letterToNumber(letterToGo)<9)&(letterToNumber(letterToGo)>-1)&(numberToGo<9)&(numberToGo>-1)&(letterToGo==this.getLetter() || numberToGo==this.getNumber());
     }
 }
