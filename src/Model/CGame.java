@@ -28,7 +28,6 @@ public class CGame {
     public CGame() {
         plateau = new CPlateau();
 
-
         // initialisation of white pieces array
         this.pieces = new ArrayList<>();
 
@@ -280,7 +279,6 @@ public class CGame {
             System.out.print("\ncouleur: "+startCase.getColor());
         }
         else {
-            System.out.print("\nBWLAAAAAARAGERAGEAGEAGESDHRTSJRTJRDJTRJTRJTRJTJGFDJFJJJ");
             CCase lastCase = plateau.getCaseWithCoordinate(selectedPiece.getLetter(),selectedPiece.getNumber()-1);
             System.out.print("\nselected letter: "+selectedPiece.getLetter()+" number: "+selectedPiece.getNumber());
             lastCase.setColor(Color.GREEN);
@@ -375,6 +373,10 @@ public class CGame {
             }
         }
         else {
+            if (pieceToMove.getLetter() == letter & pieceToMove.getNumber() == number) {
+                selectedPiece = null;
+                plateau.getCaseWithCoordinate(pieceToMove.getLetter(), pieceToMove.getNumber() - 1).resetColor();
+            }
             System.out.print("\nThe move is not legal");
         }
     }

@@ -32,9 +32,6 @@ public class FenetrePrincipale extends JFrame {
 //        // creation of the database
 //        dao.createTable();
 
-
-
-
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100,100,800,600);
         setTitle("chess game");
@@ -85,10 +82,12 @@ public class FenetrePrincipale extends JFrame {
         });
 
         //this.setContentPane(myPanel);
-        JButton button1 = new JButton("J1agagne");
-        JButton button2 = new JButton("J2 a gagne");
-        button1.setBounds(650,20,100,50);
-        button2.setBounds(650,100,100,50);
+        JButton button1 = new JButton("J1 won");
+        JButton button2 = new JButton("J2 won");
+        JButton button3 = new JButton("New Game");
+        button1.setBounds(650,50,100,50);
+        button2.setBounds(650,150,100,50);
+        button3.setBounds(650,250,100,50);
 
         button1.addActionListener(new ActionListener() {
 //            @Override
@@ -96,6 +95,7 @@ public class FenetrePrincipale extends JFrame {
 //               dao.insertData("J1",500);
 //               dao.retrieveData();
                System.out.print("\nJ1 won ! ");
+//               myGame = new CGame();
             }
         });
         button2.addActionListener(new ActionListener() {
@@ -104,11 +104,22 @@ public class FenetrePrincipale extends JFrame {
 //                dao.insertData("J2",500);
 //                dao.retrieveData();
                 System.out.print("\nJ2 won ! ");
+//                myGame = new CGame();
+            }
+        });
+        button3.addActionListener(new ActionListener() {
+            //            @Override
+            public void actionPerformed(ActionEvent e) {
+//                dao.insertData("J2",500);
+//                dao.retrieveData();
+                System.out.print("\nNew game ! ");
+//                myGame = new CGame();
             }
         });
 
         myPanel.add(button1);
         myPanel.add(button2);
+        myPanel.add(button3);
 
 
 //        dao.retrieveData();
