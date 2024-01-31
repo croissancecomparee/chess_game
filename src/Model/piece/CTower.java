@@ -1,5 +1,9 @@
 package Model.piece;
 
+import Model.CPoint;
+
+import java.util.List;
+
 public class CTower extends CPiece{
     private String name = "Tower";
 

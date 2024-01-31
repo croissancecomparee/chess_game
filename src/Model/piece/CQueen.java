@@ -1,5 +1,9 @@
 package Model.piece;
 
+import Model.CPoint;
+
+import java.util.List;
+
 import static java.lang.Math.abs;
 
 public class CQueen extends CPiece{
