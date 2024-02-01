@@ -316,9 +316,20 @@ public class CGame {
             // checking that all the intermediate cases are empty
             boolean isAllEmpty = true; // true by default, in case the list is empty
             if (listInterCases != null) { // the list is not empty
-                for (CPoint<Character, Integer> cPoint : listInterCases) {
-                    isAllEmpty = isAllEmpty & plateau.getCaseWithCoordinate(cPoint.getLetter(), cPoint.getNumber()).isFree();
+                System.out.print("\nthere is intermediate case");
+//                for (CPoint<Character, Integer> cPoint : listInterCases) {
+//                    isAllEmpty = isAllEmpty & plateau.getCaseWithCoordinate(cPoint.getLetter(), cPoint.getNumber()).isFree();
+//                    System.out.print("\nCase verified letter: "+cPoint.getLetter()+"\tnumber: "+cPoint.getNumber());
+//                }
+                System.out.print("\ntaille liste: "+listInterCases.size());
+                for (int i=0;i<listInterCases.size();i++) {
+                    CPoint<Character, Integer> cPoint = listInterCases.get(i);
+                    isAllEmpty = isAllEmpty & plateau.getCaseWithCoordinate(cPoint.getLetter(),cPoint.getNumber()).isFree();
+                    System.out.print("\nCase verified letter: "+cPoint.getLetter()+"\tnumber: "+cPoint.getNumber()+"\test-elle vide ? "+isAllEmpty);
                 }
+            }
+            else {
+                System.out.print("\nno intermediate case");
             }
 
             if (isAllEmpty) {

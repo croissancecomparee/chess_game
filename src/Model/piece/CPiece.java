@@ -117,7 +117,9 @@ public abstract class CPiece {
         // run through the cases between
         int i = indexLetter;
         int j = ordinate;
-        while (i!=indexLetterToGo & j!=numberToGo) {
+        i += horizontalDirection;
+        j += verticalDirection;
+        while (i!=indexLetterToGo || j!=numberToGo) {
             res.add(new CPoint<>(letterCoordinate[i],j));
 
             i += horizontalDirection;
