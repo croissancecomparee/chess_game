@@ -6,14 +6,15 @@ import Model.piece.CKnight;
 import Model.piece.CKing;
 import Model.piece.CQueen;
 import Model.piece.CTower;
+import Model.CPoint;
 import gui.MonPanel;
-//import gui.FenetrePrincipale.MyMousteListener;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CGame {
     private CPlateau plateau;
@@ -27,7 +28,6 @@ public class CGame {
 
     public CGame() {
         plateau = new CPlateau();
-
 
         // initialisation of white pieces array
         this.pieces = new ArrayList<>();
@@ -72,10 +72,10 @@ public class CGame {
         // adding towers L : Left, R : Right
         CTower newTowerWL = new CTower("\u2656",0,'A',1);
         CTower newTowerWR = new CTower("\u2656",0,'H',1);
-        plateau.getCaseWithCoordinate('A',1);
+        relatedCase = plateau.getCaseWithCoordinate('A',1);
         relatedCase.setFree(false);
         relatedCase.setPiece(newTowerWL);
-        System.out.print(" x: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+ relatedCase.getPiece());
+        System.out.print("\n x: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+ relatedCase.getPiece());
         relatedCase = plateau.getCaseWithCoordinate('H',1);
         relatedCase.setFree(false);
         relatedCase.setPiece(newTowerWR);
@@ -280,7 +280,6 @@ public class CGame {
             System.out.print("\ncouleur: "+startCase.getColor());
         }
         else {
-            System.out.print("\nBWLAAAAAARAGERAGEAGEAGESDHRTSJRTJRDJTRJTRJTRJTJGFDJFJJJ");
             CCase lastCase = plateau.getCaseWithCoordinate(selectedPiece.getLetter(),selectedPiece.getNumber()-1);
             System.out.print("\nselected letter: "+selectedPiece.getLetter()+" number: "+selectedPiece.getNumber());
             lastCase.setColor(Color.GREEN);
@@ -308,67 +307,107 @@ public class CGame {
         CCase caseToGo = plateau.getCaseWithCoordinate(letter, number);
         System.out.print("\nmoving piece to case: letter:"+caseToGo.getLetter()+"\tnumber:"+caseToGo.getNumber());
         // no piece on it
-        if (caseToGo.isFree()) {
-            System.out.print("\nsetselected case libre letter:"+pieceToMove.getLetter()+"\tnumber:"+pieceToMove.getNumber());
-            CCase oldCase = plateau.getCaseWithCoordinate(pieceToMove.getLetter(),pieceToMove.getNumber());
-            plateau.getCaseWithCoordinate(pieceToMove.getLetter(),pieceToMove.getNumber()).setPiece(null);
-            plateau.getCaseWithCoordinate(pieceToMove.getLetter(),pieceToMove.getNumber()).setFree(true);
-            plateau.getCaseWithCoordinate(pieceToMove.getLetter(),pieceToMove.getNumber()-1).resetColor();
-            System.out.print("\ncouleur oldcase: "+ oldCase.getColor());
-            System.out.print("\nmoving piece from case: letter:"+oldCase.getLetter()+"\tnumber:"+oldCase.getNumber());
+        // checking if it is a legal move or not
+        if (pieceToMove.getLegalMove(letter, number, caseToGo.isFree())) {
+            System.out.print("\nThe move is legal");
 
-            pieceToMove.move(letter,number);
-            System.out.print("\ncase to go letter: "+letter+"\nnumber: "+number);
-            System.out.print("\ncoordinate to go abscisse: "+plateau.getAbscissaCoordinate(letter)+"\nordonnee: "+plateau.getordinateCoordinate(number));
-            pieceToMove.movingTextArea(plateau.getAbscissaCoordinate(letter),plateau.getordinateCoordinate(number));
-
-
-            caseToGo.setFree(false);
-            caseToGo.setPiece(pieceToMove);
-//            plateau.getCaseWithCoordinate(letter, number-1).setColor(Color.GREEN);
-            selectedPiece = null;
-        }
-        // there is a piece on the case
-        else {
-            // checking the color of the piece0
-            CPiece pieceOnTheCase = caseToGo.getPiece();
-            System.out.print("\npiece: "+caseToGo.getPiece());
-            // if opposite
-            // then eat
-            if (pieceOnTheCase.getColor() != pieceToMove.getColor()) {
-                pieces.remove(pieceOnTheCase);
-                deletePiece(caseToGo.getPiece(), panel);
-                pieceOnTheCase.move('Z',-1);
-                pieceOnTheCase.movingTextArea(1000,10000);
-                System.out.print("\nPiece on the case ?: "+caseToGo.getPiece());
-                System.out.print("\npieces in the table? "+pieces.contains(pieceOnTheCase));
-
-                CCase oldCase = plateau.getCaseWithCoordinate(pieceToMove.getLetter(),pieceToMove.getNumber());
-                oldCase.setPiece(null);
-                oldCase.setFree(true);
-                plateau.getCaseWithCoordinate(pieceToMove.getLetter(),pieceToMove.getNumber()-1).resetColor();
-//                oldCase.resetColor();
-//
-                pieceToMove.move(letter,number);
-                System.out.print("\ncase to go letter: "+letter+"\nnumber: "+number);
-                System.out.print("\ncase to go abscisse: "+plateau.getAbscissaCoordinate(letter)+"\nordonnee: "+plateau.getordinateCoordinate(number));
-                pieceToMove.movingTextArea(plateau.getAbscissaCoordinate(letter),plateau.getordinateCoordinate(number));
-//
-                caseToGo.setFree(false);
-                caseToGo.setPiece(pieceToMove);
-                selectedPiece = null;
-
-                System.out.print("\nPiece on the case ?: "+caseToGo.getPiece());
-            }
-            // else
-            // do nothing
-            else {
-                if (pieceToMove.getLetter()==letter & pieceToMove.getNumber()==number) {
-                    selectedPiece = null;
-                    plateau.getCaseWithCoordinate(pieceToMove.getLetter(),pieceToMove.getNumber()-1).resetColor();
+            // getting all the intermediate cases between the beginning case and the case to go
+            List<CPoint<Character, Integer>> listInterCases =pieceToMove.getIntermediateCases(letter,number);
+            // checking that all the intermediate cases are empty
+            boolean isAllEmpty = true; // true by default, in case the list is empty
+            if (listInterCases != null) { // the list is not empty
+                System.out.print("\nthere is intermediate case");
+//                for (CPoint<Character, Integer> cPoint : listInterCases) {
+//                    isAllEmpty = isAllEmpty & plateau.getCaseWithCoordinate(cPoint.getLetter(), cPoint.getNumber()).isFree();
+//                    System.out.print("\nCase verified letter: "+cPoint.getLetter()+"\tnumber: "+cPoint.getNumber());
+//                }
+                System.out.print("\ntaille liste: "+listInterCases.size());
+                for (int i=0;i<listInterCases.size();i++) {
+                    CPoint<Character, Integer> cPoint = listInterCases.get(i);
+                    isAllEmpty = isAllEmpty & plateau.getCaseWithCoordinate(cPoint.getLetter(),cPoint.getNumber()).isFree();
+                    System.out.print("\nCase verified letter: "+cPoint.getLetter()+"\tnumber: "+cPoint.getNumber()+"\test-elle vide ? "+isAllEmpty);
                 }
-                System.out.print("The case is already occupied");
             }
+            else {
+                System.out.print("\nno intermediate case");
+            }
+
+            if (isAllEmpty) {
+                System.out.print("\nNo intermediate occupied case");
+
+                if (caseToGo.isFree()) {
+                    System.out.print("\nsetselected case libre letter:" + pieceToMove.getLetter() + "\tnumber:" + pieceToMove.getNumber());
+                    CCase oldCase = plateau.getCaseWithCoordinate(pieceToMove.getLetter(), pieceToMove.getNumber());
+                    plateau.getCaseWithCoordinate(pieceToMove.getLetter(), pieceToMove.getNumber()).setPiece(null);
+                    plateau.getCaseWithCoordinate(pieceToMove.getLetter(), pieceToMove.getNumber()).setFree(true);
+                    plateau.getCaseWithCoordinate(pieceToMove.getLetter(), pieceToMove.getNumber() - 1).resetColor();
+                    System.out.print("\ncouleur oldcase: " + oldCase.getColor());
+                    System.out.print("\nmoving piece from case: letter:" + oldCase.getLetter() + "\tnumber:" + oldCase.getNumber());
+
+                    pieceToMove.move(letter, number);
+                    System.out.print("\ncase to go letter: " + letter + "\nnumber: " + number);
+                    System.out.print("\ncoordinate to go abscisse: " + plateau.getAbscissaCoordinate(letter) + "\nordonnee: " + plateau.getordinateCoordinate(number));
+                    pieceToMove.movingTextArea(plateau.getAbscissaCoordinate(letter), plateau.getordinateCoordinate(number));
+
+
+                    caseToGo.setFree(false);
+                    caseToGo.setPiece(pieceToMove);
+                    //            plateau.getCaseWithCoordinate(letter, number-1).setColor(Color.GREEN);
+                    selectedPiece = null;
+                }
+                // there is a piece on the case
+                else {
+                    // checking the color of the piece0
+                    CPiece pieceOnTheCase = caseToGo.getPiece();
+                    System.out.print("\npiece: " + caseToGo.getPiece());
+                    // if opposite
+                    // then eat
+                    if (pieceOnTheCase.getColor() != pieceToMove.getColor()) {
+                        pieces.remove(pieceOnTheCase);
+                        deletePiece(caseToGo.getPiece(), panel);
+                        pieceOnTheCase.move('Z', -1);
+                        pieceOnTheCase.movingTextArea(1000, 10000);
+                        System.out.print("\nPiece on the case ?: " + caseToGo.getPiece());
+                        System.out.print("\npieces in the table? " + pieces.contains(pieceOnTheCase));
+
+                        CCase oldCase = plateau.getCaseWithCoordinate(pieceToMove.getLetter(), pieceToMove.getNumber());
+                        oldCase.setPiece(null);
+                        oldCase.setFree(true);
+                        plateau.getCaseWithCoordinate(pieceToMove.getLetter(), pieceToMove.getNumber() - 1).resetColor();
+                        //                oldCase.resetColor();
+                        //
+                        pieceToMove.move(letter, number);
+                        System.out.print("\ncase to go letter: " + letter + "\nnumber: " + number);
+                        System.out.print("\ncase to go abscisse: " + plateau.getAbscissaCoordinate(letter) + "\nordonnee: " + plateau.getordinateCoordinate(number));
+                        pieceToMove.movingTextArea(plateau.getAbscissaCoordinate(letter), plateau.getordinateCoordinate(number));
+                        //
+                        caseToGo.setFree(false);
+                        caseToGo.setPiece(pieceToMove);
+                        selectedPiece = null;
+
+                        System.out.print("\nPiece on the case ?: " + caseToGo.getPiece());
+                    }
+                    // else
+                    // do nothing
+                    else {
+                        if (pieceToMove.getLetter() == letter & pieceToMove.getNumber() == number) {
+                            selectedPiece = null;
+                            plateau.getCaseWithCoordinate(pieceToMove.getLetter(), pieceToMove.getNumber() - 1).resetColor();
+                        }
+                        System.out.print("The case is already occupied");
+                    }
+                }
+            }
+            else {
+                System.out.print("\nA case is occupied between the destination case and the departure case");
+            }
+        }
+        else {
+            if (pieceToMove.getLetter() == letter & pieceToMove.getNumber() == number) {
+                selectedPiece = null;
+                plateau.getCaseWithCoordinate(pieceToMove.getLetter(), pieceToMove.getNumber() - 1).resetColor();
+            }
+            System.out.print("\nThe move is not legal");
         }
     }
 
