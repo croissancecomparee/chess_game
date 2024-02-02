@@ -156,7 +156,7 @@ public class FenetrePrincipale extends JFrame {
         System.out.print("\nclicked case letter:"+aCase.getLetter()+"\tnumber:"+aCase.getNumber());
         if (myGame.isSelected()) {
             System.out.print("\nclicked case letter:"+aCase.getLetter()+"\tnumber:"+aCase.getNumber());
-            myGame.moveSelected(aCase.getLetter(),aCase.getNumber(), myPanel);
+            myGame.moveSelected(aCase.getLetter(), aCase.getNumber(), myPanel);
             myPanel.repaint();
         }
         else{

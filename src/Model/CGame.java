@@ -195,6 +195,8 @@ public class CGame {
                     }
                     else {
                         clickPiece(piece);
+                        panel.repaint();
+//                        plateau.getCaseWithCoordinate(piece.getLetter(),piece.getNumber()-1).setColor(Color.CYAN);
                         System.out.print("\npiece cliquee: " + piece);
                     }
                 }
@@ -282,7 +284,7 @@ public class CGame {
         if (this.selectedPiece == null) {
             this.selectedPiece = clickedPiece;
             setSelectedPiece(clickedPiece);
-            System.out.print("\npiece cliquée"+clickedPiece);
+            System.out.print("\npiece cliquée: "+clickedPiece);
             CCase startCase = plateau.getCaseWithCoordinate(clickedPiece.getLetter(),clickedPiece.getNumber()-1);
             System.out.print("\nclickpiece letter: "+clickedPiece.getLetter()+" number: "+clickedPiece.getNumber());
             startCase.setColor(Color.CYAN);
