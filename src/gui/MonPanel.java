@@ -10,6 +10,7 @@ public class MonPanel extends JPanel {
     private FenetrePrincipale maFenetrePrincipale;
 
     public MonPanel(FenetrePrincipale fenetrePrincipale) {
+        setFocusable(true);
         maFenetrePrincipale = fenetrePrincipale;
     }
 
