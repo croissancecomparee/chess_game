@@ -13,6 +13,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -178,20 +180,37 @@ public class CGame {
     }
 
     public void drawPieces(MonPanel panel) {
-        // white
         for (CPiece piece : this.pieces) {
             JTextArea textArea = createChessTextArea(piece, plateau);
-            panel.add(textArea);
-            textArea = null;
-        }
 
-        // black
-        for (CPiece piece : this.pieces) {
-            JTextArea textArea = createChessTextArea(piece, plateau);
-            panel.add(textArea);
-            textArea = null;
-        }
+            textArea.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    clickPiece(piece);
+                    System.out.print("\npiece cliquee: "+piece);
+                }
+            });
 
+//            JTextArea finalTextArea = textArea;
+//            textArea.addMouseListener(new MouseAdapter() {
+//                @Override
+//                public void mouseClicked(MouseEvent e) {
+//                    int offset = finalTextArea.viewToModel(e.getPoint());
+//                    try {
+//                        int line = finalTextArea.getLineOfOffset(offset);
+//                        int start = finalTextArea.getLineStartOffset(line);
+//                        int end = finalTextArea.getLineEndOffset(line);
+//
+//                        String clickedText = finalTextArea.getText().substring(start, end);
+//                        System.out.print("\nclicked text: "+clickedText);
+//                    }
+//                    catch (Exception ex){
+//                        ex.printStackTrace();
+//                    }
+//                }
+//            });
+            panel.add(textArea);
+        }
     }
 
     private JTextArea createChessTextArea(CPiece piece, CPlateau plateau) {
@@ -273,7 +292,7 @@ public class CGame {
         if (this.selectedPiece == null) {
             this.selectedPiece = clickedPiece;
             setSelectedPiece(clickedPiece);
-            System.out.print("piece cliquée"+clickedPiece);
+            System.out.print("\npiece cliquée"+clickedPiece);
             CCase startCase = plateau.getCaseWithCoordinate(clickedPiece.getLetter(),clickedPiece.getNumber()-1);
             System.out.print("\nclickpiece letter: "+clickedPiece.getLetter()+" number: "+clickedPiece.getNumber());
             startCase.setColor(Color.CYAN);
