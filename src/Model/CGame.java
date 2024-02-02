@@ -186,29 +186,19 @@ public class CGame {
             textArea.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    clickPiece(piece);
-                    System.out.print("\npiece cliquee: "+piece);
+                    if (isSelected()) {
+                        System.out.print("\na piece is selected");
+                        CCase aCase = plateau.getCaseWithCoordinate(piece.getLetter(),piece.getNumber());
+                        System.out.print("\nclicked case letter:"+aCase.getLetter()+"\tnumber:"+aCase.getNumber());
+                        moveSelected(aCase.getLetter(),aCase.getNumber(), panel);
+                        panel.repaint();
+                    }
+                    else {
+                        clickPiece(piece);
+                        System.out.print("\npiece cliquee: " + piece);
+                    }
                 }
             });
-
-//            JTextArea finalTextArea = textArea;
-//            textArea.addMouseListener(new MouseAdapter() {
-//                @Override
-//                public void mouseClicked(MouseEvent e) {
-//                    int offset = finalTextArea.viewToModel(e.getPoint());
-//                    try {
-//                        int line = finalTextArea.getLineOfOffset(offset);
-//                        int start = finalTextArea.getLineStartOffset(line);
-//                        int end = finalTextArea.getLineEndOffset(line);
-//
-//                        String clickedText = finalTextArea.getText().substring(start, end);
-//                        System.out.print("\nclicked text: "+clickedText);
-//                    }
-//                    catch (Exception ex){
-//                        ex.printStackTrace();
-//                    }
-//                }
-//            });
             panel.add(textArea);
         }
     }
@@ -299,9 +289,8 @@ public class CGame {
             System.out.print("\ncouleur: "+startCase.getColor());
         }
         else {
-            CCase lastCase = plateau.getCaseWithCoordinate(selectedPiece.getLetter(),selectedPiece.getNumber()-1);
+//            CCase lastCase = plateau.getCaseWithCoordinate(selectedPiece.getLetter(),selectedPiece.getNumber()-1);
             System.out.print("\nselected letter: "+selectedPiece.getLetter()+" number: "+selectedPiece.getNumber());
-            lastCase.setColor(Color.GREEN);
             this.selectedPiece = null;
 //            CCase startCase = plateau.getCaseWithCoordinate(clickedPiece.getLetter(),clickedPiece.getNumber());
 //            startCase.setColor(Color.CYAN);
@@ -312,7 +301,7 @@ public class CGame {
         return plateau.getCaseCoordinatePanel(x,y);
     }
 
-    public boolean getSelected() {
+    public boolean isSelected() {
         return selectedPiece!=null;
     }
 
