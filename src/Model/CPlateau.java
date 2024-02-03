@@ -1,6 +1,8 @@
 package Model;
 import Model.piece.CPiece;
+import gui.MonPanel;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.awt.Point;
@@ -76,9 +78,30 @@ public class CPlateau {
     public int getWeightCase() {
         return weightCase;
     }
-    public void draw(Graphics g) {
+    public void draw(Graphics g, MonPanel panel) {
         for (int i=0;i<64;i++) {
             this.cases.get(i).draw(g);
+        }
+        for (int i=0;i<8;i++) {
+            JLabel abscissa = new JLabel(Character.toString(letterCoordinate[i]));
+            JLabel ordinate = new JLabel(i+1+"");
+            abscissa.setBounds(
+                    (int) cointSuperieurGauche.getX()+(i)*weightCase+30,
+                    (int) cointSuperieurGauche.getY()+9*weightCase,
+                    89,60
+            );
+            ordinate.setBounds(
+                    (int) cointSuperieurGauche.getX()+(8)*weightCase+30,
+                    (int) cointSuperieurGauche.getY()+(8-i)*weightCase,
+                    89,60
+            );
+
+            Font originalFont = abscissa.getFont();
+//            Font resizedFont = new Font(originalFont.getName(), Font.PLAIN, 2);
+//            abscissa.setFont(resizedFont);
+//            ordinate.setFont(resizedFont);
+            panel.add(abscissa);
+            panel.add(ordinate);
         }
     }
 }

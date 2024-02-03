@@ -113,7 +113,11 @@ public class FenetrePrincipale extends JFrame {
 //                dao.insertData("J2",500);
 //                dao.retrieveData();
                 System.out.print("\nNew game ! ");
-//                myGame = new CGame();
+                myGame = null;
+                myGame = new CGame();
+//                myGame.drawPieces(myPanel);
+//                pack();
+//                setLocationRelativeTo(null);
             }
         });
 
@@ -142,7 +146,7 @@ public class FenetrePrincipale extends JFrame {
         // On colore le fond de l'image en blanc
         bufferGraphics.setColor(Color.WHITE);
         // On dessine le plateau
-        myGame.draw(bufferGraphics);
+        myGame.draw(bufferGraphics, myPanel);
 
         g.drawImage(offscreen,0,0,null);
     }

@@ -78,6 +78,7 @@ public abstract class CPiece {
     }
 
     public void movingTextArea(int x, int y) {
+        System.out.print("\nmoving to coordinate: "+x+"\t"+y);
         textArea.setBounds(x,y,widthTextArea,heightTextArea);
     }
     public void removeTextAreaFromPanel(MonPanel panel) {

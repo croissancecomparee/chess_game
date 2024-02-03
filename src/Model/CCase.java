@@ -10,7 +10,6 @@ public class CCase{
     private Rectangle rectangle;
     private Color color;
     private Color baseColor;
-    private boolean free = true; // a simplifier
     private CPiece relatedPiece = null;
     public CCase(Rectangle rectangle, Color color, String s, int i){
         this.rectangle = new Rectangle(0,0,50,50);
@@ -21,7 +20,6 @@ public class CCase{
         this.ordinate = number;
         this.color = color;
         this.baseColor = color;
-        this.free = free;
     }
     public char getLetter() {
         return abscissa;
@@ -37,7 +35,6 @@ public class CCase{
     public boolean isFree() {
         return relatedPiece==null;
     }
-    public void setFree(boolean newState ) { free = newState; }
     public CPiece getPiece() {return relatedPiece;}
     public void setPiece(CPiece newPiece) {relatedPiece = newPiece;}
     public void draw(Graphics g) {
