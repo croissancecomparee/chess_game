@@ -18,7 +18,7 @@ public abstract class CPiece {
     private int ordinate;
     private boolean selected = false;
     private JTextArea textArea;
-    private int widthTextArea=150;
+    private int widthTextArea=70;
     private int heightTextArea=60;
 
     public CPiece(String unicodeC, int colorC, char abscissaC, int ordinateC) {

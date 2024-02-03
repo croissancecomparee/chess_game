@@ -74,7 +74,7 @@ public class CPlateau {
         while (letter!=letterCoordinate[i]) {
             i++;
         }
-        return weightCase*i;
+        return weightCase*i+10;
     }
 
     public int getordinateCoordinate(int i) {
