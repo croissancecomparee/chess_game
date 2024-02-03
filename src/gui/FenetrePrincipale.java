@@ -85,9 +85,9 @@ public class FenetrePrincipale extends JFrame {
         JButton button1 = new JButton("J1 won");
         JButton button2 = new JButton("J2 won");
         JButton button3 = new JButton("New Game");
-        button1.setBounds(650,50,100,50);
-        button2.setBounds(650,150,100,50);
-        button3.setBounds(650,250,100,50);
+        button1.setBounds(750,150,100,50);
+        button2.setBounds(750,250,100,50);
+        button3.setBounds(750,350,100,50);
 
         button1.addActionListener(new ActionListener() {
 //            @Override
