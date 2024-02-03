@@ -21,7 +21,7 @@ public class CPlateau {
         this.cases = new ArrayList<>();
 
         // ajout des valeurs:
-        for (int i=1;i<10;i++) {
+        for (int i=1;i<9;i++) {
             for (int j=0;j<8;j++) {
                 CCase nouvelleCase =
                     new CCase(
@@ -31,7 +31,7 @@ public class CPlateau {
                                 weightCase,weightCase),
                         this.color[(i+j)%2],
                         letterCoordinate[j],
-                        i-1);
+                        i);
                 this.cases.add(nouvelleCase);
             }
         }
@@ -52,7 +52,7 @@ public class CPlateau {
             i++;
         }
 //        System.out.print("\ncoordonnees:("+i+","+j+")");
-        return getCase(i,j+1);
+        return getCase(i,j);
     }
 
     public CCase getCaseCoordinatePanel(int x, int y) {
@@ -60,7 +60,7 @@ public class CPlateau {
         int i = x/80 ;
         int j = y/80;
 //        System.out.print("\ncoordonnees toto:("+i+","+j+")");
-        return getCase(i,9-j+1);
+        return getCase(i,9-j);
     }
 
     public int getAbscissaCoordinate(char letter) {

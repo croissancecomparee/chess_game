@@ -110,11 +110,9 @@ public class FenetrePrincipale extends JFrame {
         button3.addActionListener(new ActionListener() {
             //            @Override
             public void actionPerformed(ActionEvent e) {
-//                dao.insertData("J2",500);
-//                dao.retrieveData();
                 System.out.print("\nNew game ! ");
-                myGame = null;
-                myGame = new CGame();
+//                myGame = null;
+//                myGame = new CGame();
 //                myGame.drawPieces(myPanel);
 //                pack();
 //                setLocationRelativeTo(null);
@@ -157,9 +155,8 @@ public class FenetrePrincipale extends JFrame {
         CCase aCase = myGame.getCase(sourisX,sourisY);
         System.out.print("\n is case free ? "+aCase.isFree());
         System.out.print("\n is a piece selected ? "+myGame.isSelected());
-        System.out.print("\nclicked case letter:"+aCase.getLetter()+"\tnumber:"+aCase.getNumber());
+        System.out.print("\nclicked case letter: "+aCase.getLetter()+"\tnumber: "+aCase.getNumber()+"\tcolor: "+aCase.getColor());
         if (myGame.isSelected()) {
-            System.out.print("\nclicked case letter:"+aCase.getLetter()+"\tnumber:"+aCase.getNumber());
             myGame.moveSelected(aCase.getLetter(), aCase.getNumber(), myPanel);
             myPanel.repaint();
         }

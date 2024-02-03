@@ -50,7 +50,7 @@ public class CGame {
         relatedCase.setPiece(newKnightWL);
         relatedCase = plateau.getCaseWithCoordinate('G', 1);
         relatedCase.setPiece(newKnightWR);
-        System.out.print(" x: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+ relatedCase.getPiece());
+        System.out.print("\nx: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+"\t"+ relatedCase.getPiece());
         this.pieces.add(newKnightWL);
         this.pieces.add(newKnightWR);
 
@@ -59,10 +59,10 @@ public class CGame {
         CBishop newBishopWR = new CBishop("\u2657",0,'F',1);
         relatedCase = plateau.getCaseWithCoordinate('C',1);
         relatedCase.setPiece(newBishopWL);
-        System.out.print(" x: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+ relatedCase.getPiece());
+        System.out.print("\nx: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+"\t"+ relatedCase.getPiece());
         relatedCase = plateau.getCaseWithCoordinate('F',1);
         relatedCase.setPiece(newBishopWR);
-        System.out.print(" x: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+ relatedCase.getPiece());
+        System.out.print("\nx: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+"\t"+ relatedCase.getPiece());
         this.pieces.add(newBishopWL);
         this.pieces.add(newBishopWR);
 
@@ -71,10 +71,10 @@ public class CGame {
         CTower newTowerWR = new CTower("\u2656",0,'H',1);
         relatedCase = plateau.getCaseWithCoordinate('A',1);
         relatedCase.setPiece(newTowerWL);
-        System.out.print("\n x: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+ relatedCase.getPiece());
+        System.out.print("\nx: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+"\t"+ relatedCase.getPiece());
         relatedCase = plateau.getCaseWithCoordinate('H',1);
         relatedCase.setPiece(newTowerWR);
-        System.out.print(" x: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+ relatedCase.getPiece());
+        System.out.print("\nx: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+"\t"+ relatedCase.getPiece());
         this.pieces.add(newTowerWL);
         this.pieces.add(newTowerWR);
 
@@ -82,14 +82,14 @@ public class CGame {
         CQueen newQueenW = new CQueen("\u2655",0,'D',1);
         relatedCase = plateau.getCaseWithCoordinate('D',1);
         relatedCase.setPiece(newQueenW);
-        System.out.print(" x: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+ relatedCase.getPiece());
+        System.out.print("\nx: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+"\t"+ relatedCase.getPiece());
         this.pieces.add(newQueenW);
 
         // adding king
         CKing newKingW = new CKing("\u2654",0,'E',1);
         relatedCase = plateau.getCaseWithCoordinate('E',1);
         relatedCase.setPiece(newKingW);
-        System.out.print(" x: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+ relatedCase.getPiece());
+        System.out.print("\nx: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+"\t"+ relatedCase.getPiece());
         this.pieces.add(newKingW);
 
         // adding black pawns
@@ -97,7 +97,7 @@ public class CGame {
             CPawn newPawn = new CPawn("\u265F",1,letterCoordinate[i],7);
             relatedCase = plateau.getCaseWithCoordinate(letterCoordinate[i],7);
             relatedCase.setPiece(newPawn);
-            System.out.print(" x: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+ relatedCase.getPiece());
+            System.out.print("\nx: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+"\t"+ relatedCase.getPiece());
             this.pieces.add(newPawn);
         }
 
@@ -106,10 +106,10 @@ public class CGame {
         CKnight newKnightBR = new CKnight("\u265E",1,'G',8);
         relatedCase = plateau.getCaseWithCoordinate('B',8);
         relatedCase.setPiece(newKnightBL);
-        System.out.print(" x: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+ relatedCase.getPiece());
+        System.out.print("\nx: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+"\t"+ relatedCase.getPiece());
         relatedCase = plateau.getCaseWithCoordinate('G',8);
         relatedCase.setPiece(newKnightBR);
-        System.out.print(" x: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+ relatedCase.getPiece());
+        System.out.print("\nx: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+"\t"+ relatedCase.getPiece());
         this.pieces.add(newKnightBL);
         this.pieces.add(newKnightBR);
 
@@ -118,10 +118,10 @@ public class CGame {
         CBishop newBishopBR = new CBishop("\u265D",1,'F',8);
         relatedCase = plateau.getCaseWithCoordinate('C',8);
         relatedCase.setPiece(newBishopBL);
-        System.out.print(" x: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+ relatedCase.getPiece());
+        System.out.print("\nx: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+"\t"+ relatedCase.getPiece());
         relatedCase = plateau.getCaseWithCoordinate('F',8);
         relatedCase.setPiece(newBishopBR);
-        System.out.print(" x: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+ relatedCase.getPiece());
+        System.out.print("\nx: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+"\t"+ relatedCase.getPiece());
         this.pieces.add(newBishopBL);
         this.pieces.add(newBishopBR);
 
@@ -130,10 +130,10 @@ public class CGame {
         CTower newTowerBR = new CTower("\u265C",1,'H',8);
         relatedCase = plateau.getCaseWithCoordinate('A',8);
         relatedCase.setPiece(newTowerBL);
-        System.out.print(" x: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+ relatedCase.getPiece());
+        System.out.print("\nx: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+"\t"+ relatedCase.getPiece());
         relatedCase = plateau.getCaseWithCoordinate('H',8);
         relatedCase.setPiece(newTowerBR);
-        System.out.print(" x: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+ relatedCase.getPiece());
+        System.out.print("\nx: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+"\t"+ relatedCase.getPiece());
         this.pieces.add(newTowerBL);
         this.pieces.add(newTowerBR);
 
@@ -141,14 +141,14 @@ public class CGame {
         CQueen newQueenB = new CQueen("\u265B",1,'D',8);
         relatedCase = plateau.getCaseWithCoordinate('D',8);
         relatedCase.setPiece(newQueenB);
-        System.out.print(" x: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+ relatedCase.getPiece());
+        System.out.print("\nx: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+"\t"+ relatedCase.getPiece());
         this.pieces.add(newQueenB);
 
         // adding king
         CKing newKingB = new CKing("\u265A",1,'E',8);
         relatedCase = plateau.getCaseWithCoordinate('E',8);
         relatedCase.setPiece(newKingB);
-        System.out.print(" x: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+ relatedCase.getPiece());
+        System.out.print("\nx: "+relatedCase.getLetter()+" y: "+relatedCase.getNumber()+"\t"+ relatedCase.getPiece());
         this.pieces.add(newKingB);
     }
 
@@ -171,7 +171,7 @@ public class CGame {
                     if (isSelected()) {
                         System.out.print("\na piece is selected");
                         CCase aCase = plateau.getCaseWithCoordinate(piece.getLetter(),piece.getNumber());
-                        System.out.print("\nclicked case letter:"+aCase.getLetter()+"\tnumber:"+aCase.getNumber());
+                        System.out.print("\nclicked case letter: "+aCase.getLetter()+"\tnumber: "+aCase.getNumber());
                         moveSelected(aCase.getLetter(),aCase.getNumber(), panel);
                         panel.repaint();
                     }
@@ -222,7 +222,7 @@ public class CGame {
             this.selectedPiece = clickedPiece;
             setSelectedPiece(clickedPiece);
             System.out.print("\npiece cliquée: "+clickedPiece);
-            CCase startCase = plateau.getCaseWithCoordinate(clickedPiece.getLetter(),clickedPiece.getNumber()-1);
+            CCase startCase = plateau.getCaseWithCoordinate(clickedPiece.getLetter(),clickedPiece.getNumber());
             System.out.print("\nclickpiece letter: "+clickedPiece.getLetter()+" number: "+clickedPiece.getNumber());
             startCase.setColor(Color.CYAN);
             System.out.print("\ncouleur: "+startCase.getColor());
@@ -258,7 +258,7 @@ public class CGame {
             List<CPoint<Character, Integer>> listInterCases =pieceToMove.getIntermediateCases(letter,number);
             // checking that all the intermediate cases are empty
             boolean isAllEmpty = true; // true by default, in case the list is empty
-            if (listInterCases != null) { // the list is not empty
+            if (!listInterCases.isEmpty()) {
                 System.out.print("\nthere is intermediate case");
 //                for (CPoint<Character, Integer> cPoint : listInterCases) {
 //                    isAllEmpty = isAllEmpty & plateau.getCaseWithCoordinate(cPoint.getLetter(), cPoint.getNumber()).isFree();
@@ -281,9 +281,10 @@ public class CGame {
                     System.out.print("\nsetselected case libre letter:" + pieceToMove.getLetter() + "\tnumber:" + pieceToMove.getNumber());
                     CCase oldCase = plateau.getCaseWithCoordinate(pieceToMove.getLetter(), pieceToMove.getNumber());
                     plateau.getCaseWithCoordinate(pieceToMove.getLetter(), pieceToMove.getNumber()).setPiece(null);
-                    plateau.getCaseWithCoordinate(pieceToMove.getLetter(), pieceToMove.getNumber() - 1).resetColor();
+                    plateau.getCaseWithCoordinate(pieceToMove.getLetter(), pieceToMove.getNumber()).resetColor();
                     System.out.print("\ncouleur oldcase: " + oldCase.getColor());
                     System.out.print("\nmoving piece from case: letter:" + oldCase.getLetter() + "\tnumber:" + oldCase.getNumber());
+                    System.out.print("\nthe piece on the old case: "+oldCase.getPiece());
 
                     pieceToMove.move(letter, number);
                     System.out.print("\ncase to go letter: " + letter + "\tnumber: " + number);
@@ -312,7 +313,7 @@ public class CGame {
 
                         CCase oldCase = plateau.getCaseWithCoordinate(pieceToMove.getLetter(), pieceToMove.getNumber());
                         oldCase.setPiece(null);
-                        plateau.getCaseWithCoordinate(pieceToMove.getLetter(), pieceToMove.getNumber() - 1).resetColor();
+                        plateau.getCaseWithCoordinate(pieceToMove.getLetter(), pieceToMove.getNumber()).resetColor();
                         //                oldCase.resetColor();
                         //
                         pieceToMove.move(letter, number);
@@ -330,7 +331,7 @@ public class CGame {
                     else {
                         if (pieceToMove.getLetter() == letter & pieceToMove.getNumber() == number) {
                             selectedPiece = null;
-                            plateau.getCaseWithCoordinate(pieceToMove.getLetter(), pieceToMove.getNumber() - 1).resetColor();
+                            plateau.getCaseWithCoordinate(pieceToMove.getLetter(), pieceToMove.getNumber()).resetColor();
                         }
                         System.out.print("The case is already occupied");
                     }
@@ -343,9 +344,9 @@ public class CGame {
         else {
             if (pieceToMove.getLetter() == letter & pieceToMove.getNumber() == number) {
                 selectedPiece = null;
-                plateau.getCaseWithCoordinate(pieceToMove.getLetter(), pieceToMove.getNumber() - 1).resetColor();
+                plateau.getCaseWithCoordinate(pieceToMove.getLetter(), pieceToMove.getNumber()).resetColor();
             }
-            System.out.print("\nThe move is not legal");
+            System.out.print("\nThe move is not legal\n");
         }
     }
 
