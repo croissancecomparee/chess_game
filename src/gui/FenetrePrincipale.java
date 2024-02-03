@@ -152,21 +152,22 @@ public class FenetrePrincipale extends JFrame {
     private void formMouseClicked(MouseEvent evt) {
         int sourisX = evt.getPoint().x;
         int sourisY = evt.getPoint().y;
-        CCase aCase = myGame.getCase(sourisX,sourisY);
-        System.out.print("\n is case free ? "+aCase.isFree());
-        System.out.print("\n is a piece selected ? "+myGame.isSelected());
-        System.out.print("\nclicked case letter: "+aCase.getLetter()+"\tnumber: "+aCase.getNumber()+"\tcolor: "+aCase.getColor());
-        if (myGame.isSelected()) {
-            myGame.moveSelected(aCase.getLetter(), aCase.getNumber(), myPanel);
-            myPanel.repaint();
-        }
-        else{
-            if (aCase.isFree() == false) {
-                CPiece pieceSelected = aCase.getPiece();
-                System.out.print("\ncoucou"+pieceSelected+myGame.isSelected());
-                myGame.clickPiece(pieceSelected);
+        if (sourisX/80 <8 & sourisX>0 & sourisY/80<9 & sourisY>0) {
+            CCase aCase = myGame.getCase(sourisX, sourisY);
+            System.out.print("\n is case free ? " + aCase.isFree());
+            System.out.print("\n is a piece selected ? " + myGame.isSelected());
+            System.out.print("\nclicked case letter: " + aCase.getLetter() + "\tnumber: " + aCase.getNumber() + "\tcolor: " + aCase.getColor());
+            if (myGame.isSelected()) {
+                myGame.moveSelected(aCase.getLetter(), aCase.getNumber(), myPanel);
                 myPanel.repaint();
-                System.out.print("\ncoucou"+pieceSelected+myGame.isSelected());
+            } else {
+                if (aCase.isFree() == false) {
+                    CPiece pieceSelected = aCase.getPiece();
+                    System.out.print("\ncoucou" + pieceSelected + myGame.isSelected());
+                    myGame.clickPiece(pieceSelected);
+                    myPanel.repaint();
+                    System.out.print("\ncoucou" + pieceSelected + myGame.isSelected());
+                }
             }
         }
     }

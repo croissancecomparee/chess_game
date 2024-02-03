@@ -39,10 +39,16 @@ public class CPlateau {
 
     public CCase getCase(int i,int j) {
         /* function that return Case with coordinate (i,j) avec i,j € [|1,8|]*/
-//        System.out.print("\ni:"+i+"\tj:"+j);
-        int k = 8*(j-1)+i;
-//        System.out.print("\ncoordinate case "+k+":"+this.cases.get(8*j+i).getLetter()+","+this.cases.get(8*j+i).getNumber());
-        return this.cases.get(8*(j-1)+i);
+        if (i<8 & i>-1 & j<9 & j>0) {
+            //        System.out.print("\ni:"+i+"\tj:"+j);
+            int k = 8 * (j - 1) + i;
+            //        System.out.print("\ncoordinate case "+k+":"+this.cases.get(8*j+i).getLetter()+","+this.cases.get(8*j+i).getNumber());
+            return this.cases.get(8 * (j - 1) + i);
+        }
+        else {
+            System.out.print("\ncase out of limit\n");
+            return null;
+        }
     }
 
     public CCase getCaseWithCoordinate(char letter, int j) {
