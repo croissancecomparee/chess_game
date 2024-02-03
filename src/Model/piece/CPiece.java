@@ -73,13 +73,13 @@ public abstract class CPiece {
         /* function that move a piece to coordinate in entry
         * the case is supposed to be free
         * */
-        System.out.print("\nmoving the piece to: "+letter+"\t"+number);
+//        System.out.print("\nmoving the piece to: "+letter+"\t"+number);
         abscissa = letter;
         ordinate = number;
     }
 
     public void movingTextArea(int x, int y) {
-        System.out.print("\nmoving to coordinate: "+x+"\t"+y);
+//        System.out.print("\nmoving to coordinate: "+x+"\t"+y);
         textArea.setBounds(x,y,widthTextArea,heightTextArea);
     }
     public void removeTextAreaFromPanel(MonPanel panel) {

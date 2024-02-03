@@ -95,7 +95,7 @@ public class FenetrePrincipale extends JFrame {
 //               dao.insertData("J1",500);
 //               dao.retrieveData();
                System.out.print("\nJ1 won ! ");
-//               myGame = new CGame();
+               restartGame();
             }
         });
         button2.addActionListener(new ActionListener() {
@@ -104,18 +104,14 @@ public class FenetrePrincipale extends JFrame {
 //                dao.insertData("J2",500);
 //                dao.retrieveData();
                 System.out.print("\nJ2 won ! ");
-//                myGame = new CGame();
+                restartGame();
             }
         });
         button3.addActionListener(new ActionListener() {
             //            @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.print("\nNew game ! ");
-//                myGame = null;
-//                myGame = new CGame();
-//                myGame.drawPieces(myPanel);
+                restartGame();
 //                pack();
-//                setLocationRelativeTo(null);
             }
         });
 
@@ -125,6 +121,15 @@ public class FenetrePrincipale extends JFrame {
 
 
 //        dao.retrieveData();
+    }
+
+    public void restartGame() {
+        System.out.print("\nNew game ! ");
+        myGame.dispose();
+        myGame = new CGame();
+        myGame.drawPieces(myPanel);
+        setLocationRelativeTo(null);
+        repaint();
     }
 
     private Font getResizedFont(Font font, int newSize) {

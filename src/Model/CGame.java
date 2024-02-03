@@ -260,10 +260,6 @@ public class CGame {
             boolean isAllEmpty = true; // true by default, in case the list is empty
             if (!listInterCases.isEmpty()) {
                 System.out.print("\nthere is intermediate case");
-//                for (CPoint<Character, Integer> cPoint : listInterCases) {
-//                    isAllEmpty = isAllEmpty & plateau.getCaseWithCoordinate(cPoint.getLetter(), cPoint.getNumber()).isFree();
-//                    System.out.print("\nCase verified letter: "+cPoint.getLetter()+"\tnumber: "+cPoint.getNumber());
-//                }
                 System.out.print("\ntaille liste: "+listInterCases.size());
                 for (CPoint<Character, Integer> cPoint : listInterCases) {
                     isAllEmpty = isAllEmpty & plateau.getCaseWithCoordinate(cPoint.getLetter(), cPoint.getNumber()).isFree();
@@ -364,10 +360,10 @@ public class CGame {
         movingPiece(selectedPiece, letter, number, panel);
     }
 
-    public void remove() {
-        plateau = null;
-        for (CPiece piece : pieces) {
-            pieces.remove(piece);
+    public void dispose() {
+        for (CPiece piece : this.pieces) {
+            piece.move('Z', -1);
+            piece.movingTextArea(1000, 10000);
         }
     }
 }
