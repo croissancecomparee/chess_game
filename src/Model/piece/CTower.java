@@ -12,6 +12,6 @@ public class CTower extends CPiece{
     };
     @Override
     public boolean getLegalMove(char letterToGo, int numberToGo, boolean isCaseFree) {
-        return (letterToNumber(letterToGo)<9)&(letterToNumber(letterToGo)>-1)&(numberToGo<9)&(numberToGo>-1)&(letterToGo==this.getLetter() || numberToGo==this.getNumber());
+        return (letterToNumber(letterToGo)<9)&(letterToNumber(letterToGo)>0)&(numberToGo<9)&(numberToGo>-1)&(letterToGo==this.getLetter() || numberToGo==this.getNumber());
     }
 }

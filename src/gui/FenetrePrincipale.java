@@ -85,9 +85,9 @@ public class FenetrePrincipale extends JFrame {
         JButton button1 = new JButton("J1 won");
         JButton button2 = new JButton("J2 won");
         JButton button3 = new JButton("New Game");
-        button1.setBounds(650,50,100,50);
-        button2.setBounds(650,150,100,50);
-        button3.setBounds(650,250,100,50);
+        button1.setBounds(750,150,100,50);
+        button2.setBounds(750,250,100,50);
+        button3.setBounds(750,350,100,50);
 
         button1.addActionListener(new ActionListener() {
 //            @Override
@@ -95,7 +95,7 @@ public class FenetrePrincipale extends JFrame {
 //               dao.insertData("J1",500);
 //               dao.retrieveData();
                System.out.print("\nJ1 won ! ");
-//               myGame = new CGame();
+               restartGame();
             }
         });
         button2.addActionListener(new ActionListener() {
@@ -104,16 +104,14 @@ public class FenetrePrincipale extends JFrame {
 //                dao.insertData("J2",500);
 //                dao.retrieveData();
                 System.out.print("\nJ2 won ! ");
-//                myGame = new CGame();
+                restartGame();
             }
         });
         button3.addActionListener(new ActionListener() {
             //            @Override
             public void actionPerformed(ActionEvent e) {
-//                dao.insertData("J2",500);
-//                dao.retrieveData();
-                System.out.print("\nNew game ! ");
-//                myGame = new CGame();
+                restartGame();
+//                pack();
             }
         });
 
@@ -123,6 +121,15 @@ public class FenetrePrincipale extends JFrame {
 
 
 //        dao.retrieveData();
+    }
+
+    public void restartGame() {
+        System.out.print("\nNew game ! ");
+        myGame.dispose();
+        myGame = new CGame();
+        myGame.drawPieces(myPanel);
+        setLocationRelativeTo(null);
+        repaint();
     }
 
     private Font getResizedFont(Font font, int newSize) {
@@ -142,7 +149,7 @@ public class FenetrePrincipale extends JFrame {
         // On colore le fond de l'image en blanc
         bufferGraphics.setColor(Color.WHITE);
         // On dessine le plateau
-        myGame.draw(bufferGraphics);
+        myGame.draw(bufferGraphics, myPanel);
 
         g.drawImage(offscreen,0,0,null);
     }
@@ -150,22 +157,22 @@ public class FenetrePrincipale extends JFrame {
     private void formMouseClicked(MouseEvent evt) {
         int sourisX = evt.getPoint().x;
         int sourisY = evt.getPoint().y;
-        CCase aCase = myGame.getCase(sourisX,sourisY);
-        System.out.print("\n is case free ? "+aCase.isFree());
-        System.out.print("\n is a piece selected ? "+myGame.isSelected());
-        System.out.print("\nclicked case letter:"+aCase.getLetter()+"\tnumber:"+aCase.getNumber());
-        if (myGame.isSelected()) {
-            System.out.print("\nclicked case letter:"+aCase.getLetter()+"\tnumber:"+aCase.getNumber());
-            myGame.moveSelected(aCase.getLetter(), aCase.getNumber(), myPanel);
-            myPanel.repaint();
-        }
-        else{
-            if (aCase.isFree() == false) {
-                CPiece pieceSelected = aCase.getPiece();
-                System.out.print("\ncoucou"+pieceSelected+myGame.isSelected());
-                myGame.clickPiece(pieceSelected);
+        if (sourisX/80 <8 & sourisX>0 & sourisY/80<9 & sourisY>0) {
+            CCase aCase = myGame.getCase(sourisX, sourisY);
+            System.out.print("\n is case free ? " + aCase.isFree());
+            System.out.print("\n is a piece selected ? " + myGame.isSelected());
+            System.out.print("\nclicked case letter: " + aCase.getLetter() + "\tnumber: " + aCase.getNumber() + "\tcolor: " + aCase.getColor());
+            if (myGame.isSelected()) {
+                myGame.moveSelected(aCase.getLetter(), aCase.getNumber(), myPanel);
                 myPanel.repaint();
-                System.out.print("\ncoucou"+pieceSelected+myGame.isSelected());
+            } else {
+                if (aCase.isFree() == false) {
+                    CPiece pieceSelected = aCase.getPiece();
+                    System.out.print("\ncoucou" + pieceSelected + myGame.isSelected());
+                    myGame.clickPiece(pieceSelected);
+                    myPanel.repaint();
+                    System.out.print("\ncoucou" + pieceSelected + myGame.isSelected());
+                }
             }
         }
     }

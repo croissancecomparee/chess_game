@@ -2,6 +2,7 @@ package Model.piece;
 
 import Model.CPoint;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Math.abs;
@@ -20,6 +21,6 @@ public class CKnight extends CPiece{
 
     @Override
     public List<CPoint<Character, Integer>> getIntermediateCases(char letterToGo, int numberToGo) {
-        return null;
+        return new ArrayList<>();
     }
 }
