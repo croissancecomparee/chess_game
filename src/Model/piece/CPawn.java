@@ -7,7 +7,6 @@ import java.util.List;
 import static java.lang.Math.abs;
 
 public class CPawn extends CPiece{
-    private String name="Pawn";
 
     public CPawn(String unicodeC, int colorC, char abscissaC, int ordinateC) {
         super(unicodeC,colorC,abscissaC,ordinateC);

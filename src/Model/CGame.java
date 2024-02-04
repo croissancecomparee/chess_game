@@ -6,13 +6,10 @@ import Model.piece.CKnight;
 import Model.piece.CKing;
 import Model.piece.CQueen;
 import Model.piece.CTower;
-import Model.CPoint;
 import gui.MonPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -200,7 +197,7 @@ public class CGame {
         piece.setTextArea(new JTextArea(piece.getUnicode())); //
         piece.getTextArea().setBounds(
                 plateau.getAbscissaCoordinate(piece.getLetter()),
-                plateau.getordinateCoordinate(piece.getNumber()),
+                plateau.getOrdinateCoordinate(piece.getNumber()),
                 89,60
         );
 
@@ -284,8 +281,8 @@ public class CGame {
 
                     pieceToMove.move(letter, number);
                     System.out.print("\ncase to go letter: " + letter + "\tnumber: " + number);
-                    System.out.print("\nmoving to this case abscisse: " + plateau.getAbscissaCoordinate(letter) + "\tordonnee: " + plateau.getordinateCoordinate(number));
-                    pieceToMove.movingTextArea(plateau.getAbscissaCoordinate(letter), plateau.getordinateCoordinate(number));
+                    System.out.print("\nmoving to this case abscisse: " + plateau.getAbscissaCoordinate(letter) + "\tordonnee: " + plateau.getOrdinateCoordinate(number));
+                    pieceToMove.movingTextArea(plateau.getAbscissaCoordinate(letter), plateau.getOrdinateCoordinate(number));
 
                     caseToGo.setPiece(pieceToMove);
                     System.out.print("\nmoving piece to case: letter:"+caseToGo.getLetter()+"\tnumber:"+caseToGo.getNumber()+"\t"+caseToGo.getPiece()+"\n");
@@ -314,8 +311,8 @@ public class CGame {
                         //
                         pieceToMove.move(letter, number);
                         System.out.print("\ncase to go letter: " + letter + "\nnumber: " + number);
-                        System.out.print("\ncase to go abscisse: " + plateau.getAbscissaCoordinate(letter) + "\nordonnee: " + plateau.getordinateCoordinate(number));
-                        pieceToMove.movingTextArea(plateau.getAbscissaCoordinate(letter), plateau.getordinateCoordinate(number));
+                        System.out.print("\ncase to go abscisse: " + plateau.getAbscissaCoordinate(letter) + "\nordonnee: " + plateau.getOrdinateCoordinate(number));
+                        pieceToMove.movingTextArea(plateau.getAbscissaCoordinate(letter), plateau.getOrdinateCoordinate(number));
                         //
                         caseToGo.setPiece(pieceToMove);
                         selectedPiece = null;

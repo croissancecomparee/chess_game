@@ -17,11 +17,7 @@ public class FenetrePrincipale extends JFrame {
     private JMenuBar menuBar;
     private JMenu mFichier;
     private JMenuItem miQuitter;
-    private CCase myCase1;
-    private CCase myCase2;
-    private CPlateau myBoard;
     private CGame myGame;
-    private JButton button;
     private DataAccesObject dao;
 
     public FenetrePrincipale() {
@@ -119,8 +115,59 @@ public class FenetrePrincipale extends JFrame {
         myPanel.add(button2);
         myPanel.add(button3);
 
+        JButton openFormButton = new JButton("Open the form");
+        openFormButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                openFormPopup();
+            }
+        });
+
+        myPanel.add(openFormButton);
 
 //        dao.retrieveData();
+    }
+
+    private void openFormPopup() {
+        JDialog formDialog = new JDialog(this, "Formulaire", true);
+        formDialog.setSize(300, 200);
+        formDialog.setLayout(new BorderLayout());
+
+        // need to be filled
+        JTextField textField1 = new JTextField();
+        JTextField textField2 = new JTextField();
+        JTextField textField3 = new JTextField();
+
+        JPanel formPanel = new JPanel(new GridLayout(3,2));
+        formPanel.add(new JLabel("Champ 1:"));
+        formPanel.add(textField1);
+        formPanel.add(new JLabel("Champ 2:"));
+        formPanel.add(textField2);
+        formPanel.add(new JLabel("Champ 3:"));
+        formPanel.add(textField3);
+
+        JButton submitButton = new JButton("Soumettre");
+        submitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Traitez les données du formulaire ici
+                String value1 = textField1.getText();
+                String value2 = textField2.getText();
+                String value3 = textField3.getText();
+
+                // Affichez les valeurs pour le moment
+                JOptionPane.showMessageDialog(formDialog, "Valeur 1: " + value1 + "\nValeur 2: " + value2 + "\nValeur 3: " + value3);
+
+                // Fermez la fenêtre du formulaire
+                formDialog.dispose();
+            }
+        });
+
+        formDialog.add(formPanel, BorderLayout.CENTER);
+        formDialog.add(submitButton, BorderLayout.SOUTH);
+        formDialog.setLocationRelativeTo(this);
+        formDialog.setVisible(true);
+
     }
 
     public void restartGame() {
@@ -130,10 +177,6 @@ public class FenetrePrincipale extends JFrame {
         myGame.drawPieces(myPanel);
         setLocationRelativeTo(null);
         repaint();
-    }
-
-    private Font getResizedFont(Font font, int newSize) {
-        return font.deriveFont((float) newSize);
     }
 
     public void draw(Graphics g) {
@@ -174,33 +217,6 @@ public class FenetrePrincipale extends JFrame {
                     System.out.print("\ncoucou" + pieceSelected + myGame.isSelected());
                 }
             }
-        }
-    }
-
-    private class MyMouseListener extends MouseAdapter {
-        private int offsetX, offsetY;
-
-        @Override
-        public void mousePressed(MouseEvent e) {
-            Component component = e.getComponent();
-            offsetX = e.getX();
-            offsetY = e.getY();
-            component.setCursor(new Cursor(Cursor.MOVE_CURSOR));
-        }
-
-        @Override
-        public void mouseReleased(MouseEvent e) {
-            e.getComponent().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-        }
-
-        @Override
-        public void mouseDragged(MouseEvent e) {
-            Component component = e.getComponent();
-            int newX = component.getX() + e.getX() - offsetX;
-            int newY = component.getY() + e.getY() - offsetY;
-
-            component.setLocation(newX, newY);
-            repaint();
         }
     }
 }
