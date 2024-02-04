@@ -8,25 +8,21 @@ import java.awt.event.*;
 import Model.DataAccesObject;
 import Model.CCase;
 import Model.CGame;
-import Model.CPlateau;
 import Model.piece.CPiece;
 
 public class FenetrePrincipale extends JFrame {
 
     private MonPanel myPanel;
-    private JMenuBar menuBar;
-    private JMenu mFichier;
-    private JMenuItem miQuitter;
     private CGame myGame;
     private DataAccesObject dao;
 
     public FenetrePrincipale() {
 
 ////        database connection when database connection available
-//        this.dao = new DataAccesObject();
+        this.dao = new DataAccesObject();
 //
 //        // creation of the database
-//        dao.createTable();
+        dao.createTable();
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100,100,800,600);
@@ -35,15 +31,6 @@ public class FenetrePrincipale extends JFrame {
         myPanel = new MonPanel(this);
         myPanel.setLayout(null);
         this.setContentPane(myPanel);
-
-        menuBar = new JMenuBar();
-        menuBar.setBounds(0, 0, 440, 21);
-        myPanel.add(menuBar);
-
-        mFichier = new JMenu("Fichier");
-        menuBar.add(mFichier);
-        miQuitter = new JMenuItem("Quitter");
-        mFichier.add(miQuitter) ;
 
         myGame = new CGame();
         myGame.drawPieces(myPanel);
@@ -97,8 +84,8 @@ public class FenetrePrincipale extends JFrame {
         button2.addActionListener(new ActionListener() {
             //            @Override
             public void actionPerformed(ActionEvent e) {
-//                dao.insertData("J2",500);
-//                dao.retrieveData();
+                dao.insertData("J2",500);
+                dao.retrieveData();
                 System.out.print("\nJ2 won ! ");
                 restartGame();
             }
@@ -125,7 +112,7 @@ public class FenetrePrincipale extends JFrame {
 
         myPanel.add(openFormButton);
 
-//        dao.retrieveData();
+        dao.retrieveData();
     }
 
     private void openFormPopup() {

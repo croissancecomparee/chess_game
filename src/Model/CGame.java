@@ -23,8 +23,6 @@ public class CGame {
 
     private CPiece selectedPiece = null;
 
-//    private JTextArea TextArea;
-
     public CGame() {
         plateau = new CPlateau();
 
@@ -149,11 +147,6 @@ public class CGame {
         this.pieces.add(newKingB);
     }
 
-    /*// A voir si c plus simple de passer par une fonction ou pas
-    public void initPieces(int color) {
-
-    }*/
-
     public void draw(Graphics g, MonPanel panel) {
         this.plateau.draw(g,panel);
     }
@@ -208,10 +201,6 @@ public class CGame {
         piece.getTextArea().setOpaque(false);
         return piece.getTextArea();
     }
-
-//    private Font getResizedFont(Font font, int newSize) {
-//        return font.deriveFont((float) newSize);
-//    }
 
     public void clickPiece(CPiece clickedPiece) {
         if (this.selectedPiece == null) {
@@ -307,8 +296,7 @@ public class CGame {
                         CCase oldCase = plateau.getCaseWithCoordinate(pieceToMove.getLetter(), pieceToMove.getNumber());
                         oldCase.setPiece(null);
                         plateau.getCaseWithCoordinate(pieceToMove.getLetter(), pieceToMove.getNumber()).resetColor();
-                        //                oldCase.resetColor();
-                        //
+
                         pieceToMove.move(letter, number);
                         System.out.print("\ncase to go letter: " + letter + "\nnumber: " + number);
                         System.out.print("\ncase to go abscisse: " + plateau.getAbscissaCoordinate(letter) + "\nordonnee: " + plateau.getOrdinateCoordinate(number));

@@ -98,10 +98,6 @@ public class CPlateau {
                     89,60
             );
 
-            Font originalFont = abscissa.getFont();
-//            Font resizedFont = new Font(originalFont.getName(), Font.PLAIN, 2);
-//            abscissa.setFont(resizedFont);
-//            ordinate.setFont(resizedFont);
             panel.add(abscissa);
             panel.add(ordinate);
         }
