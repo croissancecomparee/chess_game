@@ -22,7 +22,7 @@ public class FenetrePrincipale extends JFrame {
 
     public FenetrePrincipale() {
 
-//        database connection when database connection available
+////        database connection when database connection available
 //        this.dao = new DataAccesObject();
 //
 //        // creation of the database
@@ -86,10 +86,10 @@ public class FenetrePrincipale extends JFrame {
         button3.setBounds(750,350,100,50);
 
         button1.addActionListener(new ActionListener() {
-//            @Override
+            @Override
            public void actionPerformed(ActionEvent e) {
-//               dao.insertData("J1",500);
-//               dao.retrieveData();
+               dao.insertData("J1",500);
+               dao.retrieveData();
                System.out.print("\nJ1 won ! ");
                restartGame();
             }
