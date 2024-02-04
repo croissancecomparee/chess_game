@@ -6,13 +6,10 @@ import Model.piece.CKnight;
 import Model.piece.CKing;
 import Model.piece.CQueen;
 import Model.piece.CTower;
-import Model.CPoint;
 import gui.MonPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -25,8 +22,6 @@ public class CGame {
     private int uniformFontSize = 53;
 
     private CPiece selectedPiece = null;
-
-//    private JTextArea TextArea;
 
     public CGame() {
         plateau = new CPlateau();
@@ -152,11 +147,6 @@ public class CGame {
         this.pieces.add(newKingB);
     }
 
-    /*// A voir si c plus simple de passer par une fonction ou pas
-    public void initPieces(int color) {
-
-    }*/
-
     public void draw(Graphics g, MonPanel panel) {
         this.plateau.draw(g,panel);
     }
@@ -200,7 +190,7 @@ public class CGame {
         piece.setTextArea(new JTextArea(piece.getUnicode())); //
         piece.getTextArea().setBounds(
                 plateau.getAbscissaCoordinate(piece.getLetter()),
-                plateau.getordinateCoordinate(piece.getNumber()),
+                plateau.getOrdinateCoordinate(piece.getNumber()),
                 89,60
         );
 
@@ -211,10 +201,6 @@ public class CGame {
         piece.getTextArea().setOpaque(false);
         return piece.getTextArea();
     }
-
-//    private Font getResizedFont(Font font, int newSize) {
-//        return font.deriveFont((float) newSize);
-//    }
 
     public void clickPiece(CPiece clickedPiece) {
         if (this.selectedPiece == null) {
@@ -284,8 +270,8 @@ public class CGame {
 
                     pieceToMove.move(letter, number);
                     System.out.print("\ncase to go letter: " + letter + "\tnumber: " + number);
-                    System.out.print("\nmoving to this case abscisse: " + plateau.getAbscissaCoordinate(letter) + "\tordonnee: " + plateau.getordinateCoordinate(number));
-                    pieceToMove.movingTextArea(plateau.getAbscissaCoordinate(letter), plateau.getordinateCoordinate(number));
+                    System.out.print("\nmoving to this case abscisse: " + plateau.getAbscissaCoordinate(letter) + "\tordonnee: " + plateau.getOrdinateCoordinate(number));
+                    pieceToMove.movingTextArea(plateau.getAbscissaCoordinate(letter), plateau.getOrdinateCoordinate(number));
 
                     caseToGo.setPiece(pieceToMove);
                     System.out.print("\nmoving piece to case: letter:"+caseToGo.getLetter()+"\tnumber:"+caseToGo.getNumber()+"\t"+caseToGo.getPiece()+"\n");
@@ -310,12 +296,11 @@ public class CGame {
                         CCase oldCase = plateau.getCaseWithCoordinate(pieceToMove.getLetter(), pieceToMove.getNumber());
                         oldCase.setPiece(null);
                         plateau.getCaseWithCoordinate(pieceToMove.getLetter(), pieceToMove.getNumber()).resetColor();
-                        //                oldCase.resetColor();
-                        //
+
                         pieceToMove.move(letter, number);
                         System.out.print("\ncase to go letter: " + letter + "\nnumber: " + number);
-                        System.out.print("\ncase to go abscisse: " + plateau.getAbscissaCoordinate(letter) + "\nordonnee: " + plateau.getordinateCoordinate(number));
-                        pieceToMove.movingTextArea(plateau.getAbscissaCoordinate(letter), plateau.getordinateCoordinate(number));
+                        System.out.print("\ncase to go abscisse: " + plateau.getAbscissaCoordinate(letter) + "\nordonnee: " + plateau.getOrdinateCoordinate(number));
+                        pieceToMove.movingTextArea(plateau.getAbscissaCoordinate(letter), plateau.getOrdinateCoordinate(number));
                         //
                         caseToGo.setPiece(pieceToMove);
                         selectedPiece = null;

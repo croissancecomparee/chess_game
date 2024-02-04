@@ -7,13 +7,10 @@ import Model.piece.CPiece;
 public class CCase{
     private char abscissa;
     private int ordinate;
-    private Rectangle rectangle;
+    private final Rectangle rectangle;
     private Color color;
     private Color baseColor;
     private CPiece relatedPiece = null;
-    public CCase(Rectangle rectangle, Color color, String s, int i){
-        this.rectangle = new Rectangle(0,0,50,50);
-    }
     public CCase(Rectangle rectangle, Color color, char letter, int number) {
         this.rectangle = rectangle;
         this.abscissa = letter;

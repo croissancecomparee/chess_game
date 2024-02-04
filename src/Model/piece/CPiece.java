@@ -7,13 +7,9 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.Math.abs;
-
-
 public abstract class CPiece {
-    private String name;
     private String unicode;
-    private int color; // 0 for white, 1 for black
+    private final int color; // 0 for white, 1 for black
     private char abscissa;
     private int ordinate;
     private boolean selected = false;
@@ -53,7 +49,6 @@ public abstract class CPiece {
     public JTextArea getTextArea () {
         return textArea;
     }
-    public String getName() {return name;}
     public void setTextArea (JTextArea newTextArea) {
         textArea = newTextArea;
     }
@@ -83,6 +78,9 @@ public abstract class CPiece {
         textArea.setBounds(x,y,widthTextArea,heightTextArea);
     }
     public void removeTextAreaFromPanel(MonPanel panel) {
+        /*
+        this function aims to remove the text area from memory, but doesn't work
+         */
         JTextArea textArea = getTextArea();
         if (textArea != null) {
             Container parent = textArea.getParent();

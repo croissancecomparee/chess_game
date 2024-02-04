@@ -1,5 +1,4 @@
 package Model;
-import Model.piece.CPiece;
 import gui.MonPanel;
 
 import javax.swing.*;
@@ -11,9 +10,9 @@ public class CPlateau {
     // Attribut représentant la liste de cases
     private ArrayList<CCase> cases;
     private int weightCase = 80;
-    private Point cointSuperieurGauche = new Point(0,0);
+    private Point upperLeftCorner = new Point(0,0);
     private char[] letterCoordinate = new char[]{'A','B','C','D','E','F','G','H'};
-    private Color[] color = new Color[]{Color.WHITE,new Color(152,129,242,100)};
+    private Color[] colors = new Color[]{Color.WHITE,new Color(152,129,242,100)};
 
     // Constructeur de la classe CPlateau
     public CPlateau() {
@@ -26,10 +25,10 @@ public class CPlateau {
                 CCase nouvelleCase =
                     new CCase(
                         new Rectangle(
-                                (int) cointSuperieurGauche.getX()+j*weightCase,
-                                (int) cointSuperieurGauche.getY()+(9-i)*weightCase,
+                                (int) upperLeftCorner.getX()+j*weightCase,
+                                (int) upperLeftCorner.getY()+(9-i)*weightCase,
                                 weightCase,weightCase),
-                        this.color[(i+j)%2],
+                        this.colors[(i+j)%2],
                         letterCoordinate[j],
                         i);
                 this.cases.add(nouvelleCase);
@@ -77,13 +76,10 @@ public class CPlateau {
         return weightCase*i+10;
     }
 
-    public int getordinateCoordinate(int i) {
+    public int getOrdinateCoordinate(int i) {
         return (9-i)*weightCase;
     }
 
-    public int getWeightCase() {
-        return weightCase;
-    }
     public void draw(Graphics g, MonPanel panel) {
         for (int i=0;i<64;i++) {
             this.cases.get(i).draw(g);
@@ -92,20 +88,16 @@ public class CPlateau {
             JLabel abscissa = new JLabel(Character.toString(letterCoordinate[i]));
             JLabel ordinate = new JLabel(i+1+"");
             abscissa.setBounds(
-                    (int) cointSuperieurGauche.getX()+(i)*weightCase+30,
-                    (int) cointSuperieurGauche.getY()+9*weightCase,
+                    (int) upperLeftCorner.getX()+(i)*weightCase+30,
+                    (int) upperLeftCorner.getY()+9*weightCase,
                     89,60
             );
             ordinate.setBounds(
-                    (int) cointSuperieurGauche.getX()+(8)*weightCase+30,
-                    (int) cointSuperieurGauche.getY()+(8-i)*weightCase,
+                    (int) upperLeftCorner.getX()+(8)*weightCase+30,
+                    (int) upperLeftCorner.getY()+(8-i)*weightCase,
                     89,60
             );
 
-            Font originalFont = abscissa.getFont();
-//            Font resizedFont = new Font(originalFont.getName(), Font.PLAIN, 2);
-//            abscissa.setFont(resizedFont);
-//            ordinate.setFont(resizedFont);
             panel.add(abscissa);
             panel.add(ordinate);
         }
